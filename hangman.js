@@ -1,28 +1,53 @@
 'use strict';
-
+//VARS/////////////////////////////////////////////////////////////////////////////////////////////
 let score;
-let Gunderscores;
 let win;
 let usedLetters;
-let [underscores, completeWord];
+let underscores;
+let completeWord;
 
-
-// function refresh(){
-//     location.reload();
-// }
+//start Functions/////////////////////////////////////////////////////////////////////////////////////
+function init(){
+    reset();
+    infoText();
+    makeEventListeners();
+}
 
 function reset(){
     const endPage = document.querySelector("#end");
     const playPage = document.querySelector("#playing");
 
     score = 0;
-    Gunderscores = [];
     win = false;
     usedLetters = [];
     [underscores, completeWord] = Pickword();
 
     playPage.classList.remove("invis");
     endPage.classList.add("invis");
+}
+
+function infoText(){
+    const HangPic = document.querySelector("#HangPic");
+    const infoText = document.querySelector("#infoText");
+    infoText.textContent = ` you have ${8 - score} goes left, your used letters are: ${usedLetters.join(", ")}`; 
+    wordBox.textContent = underscores.join(" ");
+    HangPic.src = `assets/${score}.png`;
+    document.querySelector("#letter").value = "";
+}
+
+function makeEventListeners(){
+    const replayButton = document.querySelector("#replay");
+    const subButton = document.querySelector("#submit");
+    subButton.addEventListener("click", turn);
+    document.addEventListener("keyup", function f(event){
+        console.log(event.code);
+        if(event.code === "Enter"){
+            event.preventDefault();
+            turn(completeWord, null);
+        }
+    });
+    replayButton.addEventListener("click", init);
+
 }
 
 function Pickword(){
@@ -43,7 +68,49 @@ function makeWordArr(word){
     return [underscores, completeWord];
 }
 
-function end(completeWord){
+
+
+//In Game Functions////////////////////////////////////////////////////////////////////////////////////////
+function turn(){
+    // console.log(completeWord);
+    const letter = document.querySelector("#letter").value.toLowerCase();
+    const info2 = document.querySelector("#info2");
+    // letter = letter.toLowerCase();
+    if (letter === ""){
+        info2.textContent = "there needs to be a letter in the input box before you submit";
+    }else if(usedLetters.includes(letter)){
+        info2.textContent = `you have already guessed ${letter}`
+    }else{
+        info2.textContent = "";
+        usedLetters.push(letter);
+        let place = 0;
+        const OldUnderscour = [];
+        for(const item of underscores){
+            OldUnderscour.push(item);
+        }
+        for (const wordLetter of completeWord){
+            if (wordLetter === letter){
+                underscores.splice(place, 1, letter);
+            }
+            place++;
+        }
+        if (OldUnderscour.join() === underscores.join()){
+            score +=1;
+        }
+    }
+
+    //end of turn
+    infoText()
+
+    win = completeWord.join() === underscores.join();
+    if(win === true){
+        end(completeWord);
+    } else if (score >= 8){
+        end(completeWord);
+    }
+}
+
+function end(){
     const endPage = document.querySelector("#end");
     const playPage = document.querySelector("#playing");
     const endInfoText = document.querySelector("#endInfoText");
@@ -60,71 +127,11 @@ function end(completeWord){
 
 }
 
-function turn(completeWord, e){
-    // console.log(completeWord);
-    const letter = document.querySelector("#letter").value.toLowerCase();
-    const info2 = document.querySelector("#info2");
-    // letter = letter.toLowerCase();
-    if (letter === ""){
-        info2.textContent = "there needs to be a letter in the input box before you submit";
-    }else if(usedLetters.includes(letter)){
-        info2.textContent = `you have already guessed ${letter}`
-    }else{
-        info2.textContent = "";
-        usedLetters.push(letter);
-        let place = 0;
-        const OldUnderscour = [];
-        for(const item of Gunderscores){
-            OldUnderscour.push(item);
-        }
-        for (const wordLetter of completeWord){
-            if (wordLetter === letter){
-                Gunderscores.splice(place, 1, letter);
-            }
-            place++;
-        }
-        if (OldUnderscour.join() === Gunderscores.join()){
-            score +=1;
-        }
-    }
-
-    //end of turn
-    infoText.textContent = `you have ${8 - score} goes left, your used letters are: ${usedLetters.join(", ")}`; 
-    wordBox.textContent = Gunderscores.join(" ");
-    HangPic.src = `assets/${score}.png`;
-    document.querySelector("#letter").value = "";
-
-    win = completeWord.join() === Gunderscores.join();
-    if(win === true){
-        end(completeWord);
-    } else if (score >= 8){
-        end(completeWord);
-    }
-}
-
-function init(){
-    const replayButton = document.querySelector("#replay");
-    const HangPic = document.querySelector("#HangPic");
-    const infoText = document.querySelector("#infoText");
-    const subButton = document.querySelector("#submit");
 
 
 
-    
-    infoText.textContent = ` you have ${8 - score} goes left, your used letters are: ${usedLetters.join(", ")}`; 
-    wordBox.textContent = Gunderscores.join(" ");
-    HangPic.src = `assets/${score}.png`;
-    subButton.addEventListener("click", function run(event){
-        turn(completeWord, null);
-    });
-    document.addEventListener("keyup", function f(event){
-        console.log(event.code);
-        if(event.code === "Enter"){
-            event.preventDefault();
-            turn(completeWord, null);
-        }
-    })
-    replayButton.addEventListener("click", init);
 
-}
+
+
+
 window.addEventListener("load", init);
