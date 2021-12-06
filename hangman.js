@@ -104,9 +104,9 @@ function turn(){
 
     win = completeWord.join() === underscores.join();
     if(win === true){
-        end(completeWord);
+        end();
     } else if (score >= 8){
-        end(completeWord);
+        end();
     }
 }
 
