@@ -32,7 +32,7 @@ p{
 
 
 /* small screen size */
-@media (max-width: 400px){
+@media (max-width: 500px){
     header, section, footer{
         max-width: 30rem;
         margin: auto;
@@ -47,7 +47,7 @@ p{
 
 
 /* large screen size */
-@media (min-width: 400px){
+@media (min-width: 500px){
     #game{
         display: flex;
         justify-content: center;
