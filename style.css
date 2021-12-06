@@ -13,7 +13,7 @@ body{
     font-family: sans-serif;
     text-align: center;
     color: white;
-
+    padding: auto;
 }
 
 h1 {
@@ -30,16 +30,45 @@ p{
     margin-bottom:1rem;
 }
 
-header, article, footer{
-    max-width: 20rem;
-    margin: auto;
 
+/* small screen size */
+@media (max-width: 400px){
+    header, section, footer{
+        max-width: 30rem;
+        margin: auto;
+        align-items: center;
+
+    }
+    #HangPic {
+        border:solid;
+        width: 100%;
+    }
 }
+
+
+/* large screen size */
+@media (min-width: 400px){
+    #game{
+        display: flex;
+        justify-content: center;
+    }
+    #HangPic {
+        border:solid;
+        max-width: 50%;
+        /* max-height: 80%; */
+    }
+    .infoBox {
+        max-width: 50%;
+        margin: 0;
+        padding: 0.5rem;
+        /* margin: auto; */
+    }
+}
+
 
 /* ID's */
 #HangPic {
     border:solid;
-    width: 20rem;
 }
 
 #submit{
@@ -53,4 +82,15 @@ header, article, footer{
 
 .invis{
     display: none;
+}
+
+.Ilink{
+    width: 20rem;
+    border:solid;
+    border-color: white;
+    transition: all 1s;
+}
+
+.Ilink:hover{
+    padding: 1rem;
 }
