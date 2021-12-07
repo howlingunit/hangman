@@ -9,26 +9,38 @@ let completeWord;
 //start Functions/////////////////////////////////////////////////////////////////////////////////////
 function init(){
     reset();
+}
+
+function startGame(){
     infoText();
     makeEventListeners();
 }
 
 function reset(){
+    const settingPage = document.querySelector("#settings");
     const endPage = document.querySelector("#end");
     const playPage = document.querySelector("#playing");
+    const startbtn = document.querySelector("#startBtn");
 
     score = 0;
     win = false;
     usedLetters = [];
+    completeWord = "";
     [underscores, completeWord] = Pickword();
-
-    playPage.classList.remove("invis");
+    playPage.classList.add("invis");
     endPage.classList.add("invis");
+    settingPage.classList.remove("invis");
+    startbtn.addEventListener("click", startGame)
+
 }
 
 function infoText(){
+    const settingPage = document.querySelector("#settings");
+    const playPage = document.querySelector("#playing");
     const HangPic = document.querySelector("#HangPic");
     const infoText = document.querySelector("#infoText");
+    settingPage.classList.add("invis");
+    playPage.classList.remove("invis");
     infoText.textContent = ` you have ${8 - score} goes left, your used letters are: ${usedLetters.join(", ")}`; 
     wordBox.textContent = underscores.join(" ");
     HangPic.src = `assets/${score}.png`;
