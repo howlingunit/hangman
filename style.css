@@ -49,6 +49,14 @@ p{
     .infoBox{
         width: 100%;
     }
+
+    .settingClass{
+        width: 30rem;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
 }
 
 

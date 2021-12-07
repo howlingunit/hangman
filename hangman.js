@@ -6,6 +6,13 @@ let usedLetters;
 let underscores;
 let completeWord;
 
+//other functions///////////////////////////////////////////////////////////////////
+function fetchWords(){
+    const word = [];
+    const randomWords = document.querySelector("#randomWords");
+    const movies = document.querySelector("#movies");
+    const TVShows = document.querySelector("#TV-shows");
+}
 //start Functions/////////////////////////////////////////////////////////////////////////////////////
 function init(){
     reset();
