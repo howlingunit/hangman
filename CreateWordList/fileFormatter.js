@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-let file = fs.readFileSync("wordlist.txt", "utf-8");
+let file = fs.readFileSync(`${process.argv[2]}.txt`, "utf-8");
 file = file.split("\n");
 filev2 = [];
 for (const i of file){
@@ -8,4 +8,4 @@ for (const i of file){
 }
 console.log(filev2);
 const out = JSON.stringify(filev2);
-fs.writeFileSync("wordlist.json",out);
+fs.writeFileSync(`${process.argv[2]}.json`,out);
