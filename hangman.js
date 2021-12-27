@@ -1,6 +1,7 @@
 'use strict';
 //VARS/////////////////////////////////////////////////////////////////////////////////////////////
-let score;
+let livesCounter;
+let lives;
 let win;
 let usedLetters;
 let underscores;
@@ -50,6 +51,7 @@ function init(){
 
 function startGame(){
     [underscores, completeWord] = Pickword();
+    setLives();
     infoText();
     makeEventListeners();
 }
@@ -60,7 +62,6 @@ function reset(){
     const playPage = document.querySelector("#playing");
     const startbtn = document.querySelector("#startBtn");
 
-    score = 0;
     win = false;
     usedLetters = [];
     completeWord = "";
@@ -78,9 +79,9 @@ function infoText(){
     const infoText = document.querySelector("#infoText");
     settingPage.classList.add("invis");
     playPage.classList.remove("invis");
-    infoText.textContent = ` you have ${8 - score} goes left, your used letters are: ${usedLetters.join(", ")}`; 
+    infoText.textContent = ` you have ${livesCounter} goes left, your used letters are: ${usedLetters.join(", ")}`; 
     wordBox.textContent = underscores.join(" ");
-    HangPic.src = `assets/${score}.png`;
+    HangPic.src = `assets/${lives}/${lives-livesCounter}.png`;
     document.querySelector("#letter").value = "";
 }
 
@@ -117,7 +118,22 @@ function makeWordArr(word){
     return [underscores, completeWord];
 }
 
+function setLives(){
+    const elem4 = document.querySelector("#lives4").checked;
+    const elem8 = document.querySelector("#lives8").checked;
+    const elem12 = document.querySelector("#lives12").checked;
 
+    if(elem4 === true){
+        lives = 4;
+        livesCounter = 4;
+    } else if(elem8 === true){
+        lives = 8;
+        livesCounter = 8;
+    } else if(elem12 === true){
+        lives = 12;
+        livesCounter = 12;
+    }
+}
 
 //In Game Functions////////////////////////////////////////////////////////////////////////////////////////
 function turn(){
@@ -144,7 +160,7 @@ function turn(){
             place++;
         }
         if (OldUnderscour.join() === underscores.join()){
-            score +=1;
+            livesCounter -=1;
         }
     }
 
@@ -154,7 +170,7 @@ function turn(){
     win = completeWord.join() === underscores.join();
     if(win === true){
         end();
-    } else if (score >= 8){
+    } else if (livesCounter <= 0){
         end();
     }
 }
@@ -168,7 +184,7 @@ function end(){
     playPage.classList.add("invis");
     if (win === true){
         Res.textContent = "You win!";
-        endInfoText.textContent = `You Win with only ${8-score} lives left, the word was ${completeWord.join("")}`;
+        endInfoText.textContent = `You Win with only ${livesCounter} lives left, the word was ${completeWord.join("")}`;
     } else{
         Res.textContent = `You Loose`
         endInfoText.textContent = `You lost, the word is ${completeWord.join("")}`;
