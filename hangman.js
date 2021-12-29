@@ -78,9 +78,11 @@ function infoText(){
     const playPage = document.querySelector("#playing");
     const HangPic = document.querySelector("#HangPic");
     const infoText = document.querySelector("#infoText");
+    const usedLettersElem = document.querySelector("#usedLetters");
     settingPage.classList.add("invis");
     playPage.classList.remove("invis");
-    infoText.textContent = ` you have ${livesCounter} goes left, your used letters are: ${usedLetters.join(", ")}`; 
+    infoText.textContent = ` you have ${livesCounter} goes left, your used letters are:`; 
+    usedLettersElem.textContent= `${usedLetters.join(", ")}`
     wordBox.textContent = underscores.join(" ");
     HangPic.src = `assets/${lives}/${lives-livesCounter}.png`;
     document.querySelector("#letter").value = "";
