@@ -12,10 +12,12 @@
         <h1 id="title">Hangman</h1>
     </header>
     <section id="game">
-        <img src="assets/0.png" id="HangPic">
+        <img src="assets/8/0.png" id="HangPic">
         <div id="playing" class="infoBox">
             <p id="infoText"></p>
+            <p id="usedLetters"></p>
             <p id="info2"></p>
+            <p id="hintP"></p>
             <p id="wordBox"></p>
             <p>Please insert <b>1</b> letter</p>
             <input type="text" maxlength="1" id="letter"><br>
@@ -27,8 +29,59 @@
             <p id="endInfoText"></p>
             <button id="replay">replay</button>
         </div>
+
+        <div id="settings" class="infoBox settingClass">
+            <div id="words" class="settingbox">
+                <h2>Word list</h2>
+                <div class="checkbox">
+                    <input type="checkbox" name="Random" id="randomWords" checked>
+                    <label for="Random">Random words</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="Movies" id="movies" checked>
+                    <label for="Movies">Movies</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" name="TV-shows" id="TV-shows" checked>
+                    <label for="TV-shows">TV-shows</label>
+                </div>
+                <!-- <div class="checkbox">
+                    <input type="checkbox" name="FamousPeople" id="FamousPeople">
+                    <label for="FamousPeople">Famous People</label>
+                </div> -->
+            </div>
+            <div id="lives" class="settingbox">
+                <h2>Lives</h2>
+                <div class="checkbox">
+                    <input type="radio" name="lives" id="lives4" value="4">
+                    <label for="4">4 Lives</label>
+                </div>
+                <div class="checkbox">
+                    <input type="radio" name="lives" id="lives8" value="8" checked>
+                    <label for="8">8 lives</label>
+                </div>
+                <div class="checkbox">
+                    <input type="radio" name="lives" id="lives12">
+                    <label for="12">12 lives</label>
+                </div>
+            </div>
+            <div id="hints" class="settingbox">
+                <h2>words hint</h2>
+                <div class="checkbox">
+                    <input type="radio" name="hint" id="hintTrue" value="1">
+                    <label for="1">Yes</label>
+                </div>
+                <div class="checkbox">
+                    <input type="radio" name="hint" id="hintFalse" value="0" checked>
+                    <label for="0">No</label>
+                </div>
+            </div>
+            <div id="start" class="settingbox">
+                <button id="startBtn">start</button>
+            </div>
+        </div>
     </section>
 
-    <script src="hangman.js"></script>
+    <script src="SPhangman.mjs" type="module"></script>
 </body>
 </html>
