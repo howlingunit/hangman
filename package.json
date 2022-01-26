@@ -1,0 +1,25 @@
+{
+  "name": "hangman",
+  "version": "1.0.0",
+  "description": "a hangman web app",
+  "main": "svr.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "node svr.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/howlingunit/hangman.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/howlingunit/hangman/issues"
+  },
+  "homepage": "https://github.com/howlingunit/hangman#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
