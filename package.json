@@ -2,6 +2,7 @@
   "name": "hangman",
   "version": "1.0.0",
   "description": "a hangman web app",
+  "type": "module",
   "main": "svr.js",
   "directories": {
     "lib": "lib"
@@ -13,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/howlingunit/hangman.git"
   },
-  "author": "",
+  "author": "Tyler Pitt",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/howlingunit/hangman/issues"
