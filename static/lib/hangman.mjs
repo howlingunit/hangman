@@ -1,4 +1,4 @@
-import * as wordLib from "./wordLib.mjs"
+import * as wordLib from "./localWordLib.mjs"
 import * as domLib from "./domLib.mjs"
 
 
@@ -44,8 +44,8 @@ function reset(){
     
 }
 
-function startGame(){
-    word = wordLib.Pickword();
+async function startGame(){
+    word = await wordLib.fetchWords();
     hint = document.querySelector("#hintTrue").checked;
     setLives();
     domLib.infoText(lives, livesCounter, usedLetters, word.underscores);
