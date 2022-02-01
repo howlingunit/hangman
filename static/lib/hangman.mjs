@@ -70,7 +70,6 @@ function setLives(){
 
 //In Game Functions////////////////////////////////////////////////////////////////////////////////////////
 function turn(){
-    console.log(word.word);
     const letter = document.querySelector("#letter").value.toLowerCase();
     const info2 = document.querySelector("#info2");
     if (letter === ""){
