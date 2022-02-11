@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+<body>
+    <button id="sendMsg">send</button>
+    <p id="res"></p>
+
+    <script>
+        function loaded(){
+            const button = document.querySelector("#sendMsg");
+            button.addEventListener("click", sendMsg);
+        }
+        async function sendMsg(){
+            const payload = ['string'];
+            const response = await fetch("getWord", {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+            const msg = await response.json()
+
+        }
+        window.addEventListener("load", loaded);
+    </script>
+</body>
+</html>
