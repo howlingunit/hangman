@@ -8,7 +8,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "node svr.js"
+    "test": "node svr.js",
+    "start": "node svr.js"
   },
   "repository": {
     "type": "git",

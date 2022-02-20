@@ -19,10 +19,9 @@ export async function fetchWords(){
     });
 
     if(response.ok){
-        const word = await response.json();
-        return word;
+        return await response.json();
     } else{
-        console.log("svr error");
+        console.error(`svr error Code:${response.code}`);
         return "error";
     }
 }
