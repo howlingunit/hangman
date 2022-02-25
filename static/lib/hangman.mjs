@@ -41,6 +41,7 @@ function reset(){
     playPage.classList.add("invis");
     endPage.classList.add("invis");
     settingPage.classList.remove("invis");
+    settingPage.classList.add("settingClass");
     
 }
 

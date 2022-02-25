@@ -7,6 +7,7 @@ export function infoText(lives, livesCounter, usedLetters, underscores, hint, wo
     const hintP=document.querySelector("#hintP");
 
     settingPage.classList.add("invis");
+    settingPage.classList.remove("settingClass");
     playPage.classList.remove("invis");
     infoText.textContent = ` you have ${livesCounter} goes left, your used letters are:`; 
     usedLettersElem.textContent= `${usedLetters.join(", ")}`
