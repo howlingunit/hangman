@@ -5,6 +5,7 @@
     font-weight: normal;
     margin: 0;
     padding: 0;
+    text-decoration: none;
 }
 
 /* general */
@@ -37,24 +38,43 @@ p{
     margin-bottom:1rem;
 }
 
-#HangPic{
-    border: 1px solid white;
-}
-
 .invis {
     display: none;
 }
 
 :root {
-    --wrapperDirection: row;
+    --link-hover-color: #ffffff;
+    --link-color: #cccccc;
+    --nav-background-color: #333333;
+
     --wrapperWidth: 90vh;
+    --pic-width: 55%;
 }
 
 @media (max-width: 600px) {
     :root{
-        --wrapperDirection: column;
         --wrapperWidth: 100vw;
     }
+}
+
+nav{
+    display: flex;
+    width: 100vw;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--nav-background-color);
+}
+
+.link{
+    /* text-decoration: underline; */
+    color: var(--link-color);
+    margin-left: 1em;
+    transition: 0.5s;
+}
+
+.link:hover{
+    color: var(--link-hover-color);
+    cursor: pointer;
 }
 
 #startBtn{
@@ -73,7 +93,14 @@ p{
     margin-top: 1rem;
     max-height: 100vh;
     max-width: var(--wrapperWidth);
-    flex-direction: var(--wrapperDirection);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#HangPic{
+    border: 1px solid white;
+    width: var(--pic-width)
 }
 
 .settingbox{
@@ -87,11 +114,40 @@ p{
 }
 
 .infoBox{
-    border: 1px solid white;
+    width: 100%;
     text-align: center;
 }
 
-.Ilink:hover{
-    padding: 1rem;
-    transition: 1s;
+#wordBox{
+    font-size: 3rem;
+    letter-spacing: 0.5rem;
+}
+
+#keybord{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    /* align-items: center; */
+}
+
+.lineStyle{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+    width: 0;
+}
+
+.letterBoxStyle{
+    display: flex;
+    background-color: #555;
+    margin: 0.3rem;
+    flex-grow: 1;
+}
+
+.letterStyle{
+    margin: 0;
+    font-size: 2rem;
+    padding: 0;
 }

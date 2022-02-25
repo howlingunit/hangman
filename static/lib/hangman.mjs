@@ -13,6 +13,7 @@ let word;
 //start Functions/////////////////////////////////////////////////////////////////////////////////////
 export function init(){
     makeEventListeners();
+    domLib.createKeyboard();
     reset();
 }
 
@@ -40,8 +41,9 @@ function reset(){
     usedLetters = [];
     playPage.classList.add("invis");
     endPage.classList.add("invis");
-    settingPage.classList.remove("invis");
-    settingPage.classList.add("settingClass");
+    // settingPage.classList.remove("invis");
+    // settingPage.classList.add("settingClass");
+    startGame();
     
 }
 

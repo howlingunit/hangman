@@ -1,3 +1,26 @@
+export function createKeyboard(){
+    const keys = ["nl","q","w","e","r","t","y","u","i","o","p","nl","a","s","d","f","g","h","j","k","l","nl","z","x","c","v","b","n","m"]
+    const keyboardDiv = document.querySelector("#keyboard");
+    let currentLine
+    for(let i = 0; i < keys.length; i++){
+        if(keys[i] === "nl"){
+            currentLine = document.createElement("div");
+            currentLine.classList.add("lineStyle");
+            keyboardDiv.appendChild(currentLine);
+
+        } else{
+            const letterBox = document.createElement("div");
+            const letter = document.createElement("p");
+            letter.classList.add("letterStyle");
+            letter.textContent = keys[i];
+            letterBox.appendChild(letter);
+            letterBox.classList.add("letterBoxStyle");
+            currentLine.appendChild(letterBox);
+        }
+
+    }
+}
+
 export function infoText(lives, livesCounter, usedLetters, underscores, hint, wordDef){
     const settingPage = document.querySelector("#settings");
     const playPage = document.querySelector("#playing");

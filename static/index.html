@@ -8,9 +8,12 @@
     <title>hangman - single player</title>
 </head>
 <body>
-    <header>
+    <nav>
         <h1 id="title">Hangman</h1>
-    </header>
+        <a href="./multiplayer.html"><h3 class="link">multiplayer</h3></a>
+        <a href="./addWord.html"><h3 class="link">add your own words</h3></a></a>
+        <h3 class="link" id="settingLink">settings</h3>
+    </nav>
     <section id="game">
         <img src="assets/8/0.png" id="HangPic">
         <div id="playing" class="infoBox">
@@ -19,6 +22,7 @@
             <p id="info2"></p>
             <p id="hintP"></p>
             <p id="wordBox"></p>
+            <div id="keyboard"></div>
             <p>Please insert <b>1</b> letter</p>
             <input type="text" maxlength="1" id="letter"><br>
             <button id="submit">submit</button>
