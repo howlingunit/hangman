@@ -12,37 +12,32 @@ let word;
 
 //start Functions/////////////////////////////////////////////////////////////////////////////////////
 export function init(){
-    makeEventListeners();
     domLib.createKeyboard();
+    makeEventListeners();
     reset();
 }
 
 function makeEventListeners(){
-    const startbtn = document.querySelector("#startBtn");
-    const replayButton = document.querySelector("#replay");
-    const subButton = document.querySelector("#submit");
-    startbtn.addEventListener("click", startGame);
-    subButton.addEventListener("click", turn);
-    document.addEventListener("keyup", function f(event){
-        if(event.code === "Enter"){
-            event.preventDefault();
-            turn();
+    //screen keyboard listeners
+    const keyButtons = document.querySelectorAll(".letterBoxStyle");
+    for(let i = 0; i < keyButtons.length; i++){
+        keyButtons[i].addEventListener("click", (e) => {turn(keyButtons[i].id)});
+    }
+    //real keyboard
+    document.addEventListener("keydown", (e) => {
+        if(/[a-z]/.test(e.key) && e.key.length === 1){
+            turn(e.key);
         }
-    });
-    replayButton.addEventListener("click", reset);
-
+    })
 }
 
 function reset(){
-    const settingPage = document.querySelector("#settings");
     const endPage = document.querySelector("#end");
     const playPage = document.querySelector("#playing");
     win = false;
     usedLetters = [];
     playPage.classList.add("invis");
     endPage.classList.add("invis");
-    // settingPage.classList.remove("invis");
-    // settingPage.classList.add("settingClass");
     startGame();
     
 }
@@ -51,7 +46,7 @@ async function startGame(){
     word = await wordLib.fetchWords();
     hint = document.querySelector("#hintTrue").checked;
     setLives();
-    domLib.infoText(lives, livesCounter, usedLetters, word.underscores);
+    domLib.updateDom(lives, livesCounter, word.underscores);
 }
 
 function setLives(){
@@ -72,41 +67,37 @@ function setLives(){
 }
 
 //In Game Functions////////////////////////////////////////////////////////////////////////////////////////
-function turn(){
-    const letter = document.querySelector("#letter").value.toLowerCase();
-    const info2 = document.querySelector("#info2");
-    if (letter === ""){
-        info2.textContent = "there needs to be a letter in the input box before you submit";
-    }else if(usedLetters.includes(letter)){
-        info2.textContent = `you have already guessed ${letter}`
-    }else{
-        info2.textContent = "";
-        usedLetters.push(letter);
-        let place = 0;
-        const OldUnderscour = [];
-        for(const item of word.underscores){
-            OldUnderscour.push(item);
+function turn(letter){
+    if(usedLetters.includes(letter)){
+        return;
+    }
+    info2.textContent = "";
+    usedLetters.push(letter);
+    let place = 0;
+    const OldUnderscour = [];
+    for(const item of word.underscores){
+        OldUnderscour.push(item);
+    }
+    for (let i = 0; i<word.word.length; i++){
+        if (word.word[i] === letter){
+            word.underscores[i] = letter;
+            domLib.updateLetter(true, letter);
         }
-        for (let i = 0; i<word.word.length; i++){
-            if (word.word[i] === letter){
-                word.underscores[i] = letter;
-            }
-            place++;
-        }
-        if (OldUnderscour.join("") === word.underscores.join("")){
-            livesCounter -=1;
-        }
+        place++;
+    }
+    if (OldUnderscour.join("") === word.underscores.join("")){
+        domLib.updateLetter(false, letter);
+        livesCounter -=1;
     }
 
     //end of turn
-    domLib.infoText(lives, livesCounter, usedLetters, word.underscores, hint, word.def);
+    domLib.updateDom(lives, livesCounter, word.underscores, hint, word.def);
 
     win = word.underscores.join("") === word.word;
-    if(win === true){
-        domLib.end(livesCounter, word.word, win);
+    if(win){
+        domLib.end(word.word, win);
     } else if (livesCounter <= 0){
-        domLib.end(livesCounter, word.word, win);
+        domLib.end(word.word, win);
     }
 }
-
 

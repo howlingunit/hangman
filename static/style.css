@@ -99,7 +99,7 @@ nav{
 }
 
 #HangPic{
-    border: 1px solid white;
+    /* border: 1px solid white; */
     width: var(--pic-width)
 }
 
@@ -160,4 +160,27 @@ nav{
     margin: 0;
     font-size: 2rem;
     padding: 0;
+}
+
+.incorrectLetter {
+    background-color: #aa4444;
+    transition: 0.5s;
+}
+.incorrectLetter:hover{
+    background-color: #884444;
+}
+
+.correctLetter {
+    background-color: #44aa44;
+    transition: 0.5s;
+}
+.correctLetter:hover{
+    background-color: #448844;
+}
+
+.correctWord{
+    color: #44aa44;
+}
+.incorrectWord{
+    color: #aa4444;
 }

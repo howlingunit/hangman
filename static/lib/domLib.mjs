@@ -15,47 +15,52 @@ export function createKeyboard(){
             letter.textContent = keys[i];
             letterBox.appendChild(letter);
             letterBox.classList.add("letterBoxStyle");
+            letterBox.id = keys[i];
             currentLine.appendChild(letterBox);
         }
 
     }
 }
 
-export function infoText(lives, livesCounter, usedLetters, underscores, hint, wordDef){
+export function updateLetter(correct, letter){
+    const letters = document.querySelectorAll(".letterBoxStyle");
+    for(let i = 0; i < letters.length; i++){
+        if(letters[i].id === letter && correct){
+            letters[i].classList.add("correctLetter");
+            return;
+        } else if(letters[i].id === letter && !(correct)){
+            letters[i].classList.add("incorrectLetter");
+        }
+    }
+
+}
+
+export function updateDom(lives, livesCounter, underscores, hint, wordDef){
     const settingPage = document.querySelector("#settings");
     const playPage = document.querySelector("#playing");
     const HangPic = document.querySelector("#HangPic");
-    const infoText = document.querySelector("#infoText");
-    const usedLettersElem = document.querySelector("#usedLetters");
     const hintP=document.querySelector("#hintP");
 
     settingPage.classList.add("invis");
     settingPage.classList.remove("settingClass");
     playPage.classList.remove("invis");
-    infoText.textContent = ` you have ${livesCounter} goes left, your used letters are:`; 
-    usedLettersElem.textContent= `${usedLetters.join(", ")}`
     wordBox.textContent = underscores.join("");
     HangPic.src = `assets/${lives}/${lives-livesCounter}.png`;
-    document.querySelector("#letter").value = "";
     hintP.textContent = "";
     if(hint && livesCounter < lives/2){
         hintP.textContent = `Hint: ${wordDef}`
     }
 }
 
-export function end(livesCounter, completeWord, win){
+export function end(completeWord, win){
     const endPage = document.querySelector("#end");
-    const playPage = document.querySelector("#playing");
-    const endInfoText = document.querySelector("#endInfoText");
-    const Res = document.querySelector("#EndRes");
+    const wordBox = document.querySelector("#wordBox");
     endPage.classList.remove("invis");
-    playPage.classList.add("invis");
-    if (win === true){
-        Res.textContent = "You win!";
-        endInfoText.textContent = `You Win with only ${livesCounter} lives left, the word was ${completeWord}`;
+    if (!win){
+        wordBox.textContent = completeWord;
+        wordBox.classList.add("incorrectWord");
     } else{
-        Res.textContent = `You Loose`
-        endInfoText.textContent = `You lost, the word is ${completeWord}`;
+        wordBox.classList.add("correctWord");
     }
 
 }
