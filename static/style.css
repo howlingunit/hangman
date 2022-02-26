@@ -49,6 +49,11 @@ p{
 
     --wrapperWidth: 90vh;
     --pic-width: 40%;
+
+    --btnBGColor:  #555;
+    --btnBGhoverColor:  #aaa;
+    --btnTextColor: #fff;
+    --btnStyleColor: lightblue;
 }
 
 @media (max-width: 600px) {
@@ -118,6 +123,19 @@ nav{
     text-align: center;
 }
 
+.BtnStyle{
+    border: 0;
+    background-color: var(--btnBGColor);
+    color: var(--btnTextColor);
+    transition: 0.5s;
+}
+
+.BtnStyle:hover{
+    cursor: pointer;
+    background-color: var(--btnBGhoverColor);
+
+}
+
 #wordBox{
     font-size: 3rem;
     letter-spacing: 0.5rem;
@@ -144,17 +162,17 @@ nav{
     align-items: center;
 
     border-radius: 1rem;
-    background-color: #555;
+    /* background-color: var(--btnBGColor); */
     margin: 0.3rem;
     width: 5rem;
     /* height: 500px; */
     transition: 0.5s;
 }
 
-.letterBoxStyle:hover{
+/* .letterBoxStyle:hover{
     cursor: pointer;
-    background-color: #aaa;
-}
+    background-color: var(--btnBGhoverColor);
+} */
 
 .letterStyle{
     margin: 0;
@@ -183,4 +201,14 @@ nav{
 }
 .incorrectWord{
     color: #aa4444;
+}
+
+
+#replay{
+    margin-top: 2rem;
+    border-radius: 2rem;
+    width: 12rem;
+    height: 3rem;
+
+    font-size: 2rem;
 }

@@ -29,14 +29,24 @@ function makeEventListeners(){
             turn(e.key);
         }
     })
+    //replay button 
+    const replay = document.querySelector("#replay");
+    replay.addEventListener("click", reset);
 }
 
 function reset(){
     const endPage = document.querySelector("#end");
-    const playPage = document.querySelector("#playing");
+    //reset keyboard 
+    const keys = document.querySelectorAll(".letterBoxStyle");
+    for (let i = 0; i < keys.length; i++){
+        keys[i].className = "letterBoxStyle BtnStyle";
+    }
+    //reset word 
+    const wordBox = document.querySelector("#wordBox");
+    wordBox.className = "";
+
     win = false;
     usedLetters = [];
-    playPage.classList.add("invis");
     endPage.classList.add("invis");
     startGame();
     
@@ -68,9 +78,9 @@ function setLives(){
 
 //In Game Functions////////////////////////////////////////////////////////////////////////////////////////
 function turn(letter){
-    if(usedLetters.includes(letter)){
-        return;
-    }
+    if(usedLetters.includes(letter)){return;}
+    if(!word){return;}
+
     info2.textContent = "";
     usedLetters.push(letter);
     let place = 0;
@@ -96,8 +106,10 @@ function turn(letter){
     win = word.underscores.join("") === word.word;
     if(win){
         domLib.end(word.word, win);
+        word = "";
     } else if (livesCounter <= 0){
         domLib.end(word.word, win);
+        word = "";
     }
 }
 

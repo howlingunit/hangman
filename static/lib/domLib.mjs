@@ -15,6 +15,7 @@ export function createKeyboard(){
             letter.textContent = keys[i];
             letterBox.appendChild(letter);
             letterBox.classList.add("letterBoxStyle");
+            letterBox.classList.add("BtnStyle");
             letterBox.id = keys[i];
             currentLine.appendChild(letterBox);
         }
