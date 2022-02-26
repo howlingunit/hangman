@@ -10,13 +10,13 @@
 
 /* general */
 body{
-    width: 100vw;
+    /* width: 100vw;
     height: 100vh;
 
 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; */
 
     background-color: black;
     font-family: sans-serif;
@@ -48,7 +48,7 @@ p{
     --nav-background-color: #333333;
 
     --wrapperWidth: 90vh;
-    --pic-width: 55%;
+    --pic-width: 40%;
 }
 
 @media (max-width: 600px) {
@@ -89,10 +89,10 @@ nav{
 
 #game{
     display: flex;
-    margin: 0;
+    margin: auto;
     margin-top: 1rem;
-    max-height: 100vh;
-    max-width: var(--wrapperWidth);
+    height: 100%;
+    width: var(--wrapperWidth);
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -136,14 +136,24 @@ nav{
     flex-direction: row;
     justify-content: center;
     margin: auto;
-    width: 0;
 }
 
 .letterBoxStyle{
     display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 1rem;
     background-color: #555;
     margin: 0.3rem;
-    flex-grow: 1;
+    width: 5rem;
+    /* height: 500px; */
+    transition: 0.5s;
+}
+
+.letterBoxStyle:hover{
+    cursor: pointer;
+    background-color: #aaa;
 }
 
 .letterStyle{
