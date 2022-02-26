@@ -5,13 +5,21 @@
     font-weight: normal;
     margin: 0;
     padding: 0;
+    text-decoration: none;
 }
 
 /* general */
 body{
+    /* width: 100vw;
+    height: 100vh;
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center; */
+
     background-color: black;
     font-family: sans-serif;
-    text-align: center;
     color: white;
     padding: auto;
 }
@@ -30,69 +38,48 @@ p{
     margin-bottom:1rem;
 }
 
+.invis {
+    display: none;
+}
 
-/* small screen size */
-@media (max-width: 600px){
-    header, section, footer, div{
-        max-width: 20rem;
-        margin: auto;
-        align-items: center;
-        /* max-height: 10rem; */
-        display: flex;
-        flex-direction: column;
+:root {
+    --link-hover-color: #ffffff;
+    --link-color: #cccccc;
+    --nav-background-color: #333333;
 
-    }
-    #HangPic {
-        border:solid;
-        width: 100%;
-    }
-    .infoBox{
-        width: 100%;
-    }
+    --wrapperWidth: 90vh;
+    --pic-width: 40%;
 
-    .settingClass{
-        width: 30rem;
-        padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
+    --btnBGColor:  #555;
+    --btnBGhoverColor:  #aaa;
+    --btnTextColor: #fff;
+    --btnStyleColor: lightblue;
+}
+
+@media (max-width: 600px) {
+    :root{
+        --wrapperWidth: 100vw;
     }
 }
 
-
-/* large screen size */
-@media (min-width: 600px){
-    #game{
-        display: flex;
-        justify-content: center;
-    }
-    #HangPic {
-        border:solid;
-        max-width: 50%;
-        /* max-height: 80%; */
-    }
-    .infoBox {
-        max-width: 50%;
-        margin: 0;
-        padding: 0.5rem;
-        /* margin: auto; */
-    }
-
-    .settingClass{
-        width: 30rem;
-        padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-    }
+nav{
+    display: flex;
+    width: 100vw;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--nav-background-color);
 }
 
-/* ID's */
-#HangPic {
-    border:solid;
+.link{
+    /* text-decoration: underline; */
+    color: var(--link-color);
+    margin-left: 1em;
+    transition: 0.5s;
 }
 
-#submit{
-    margin-top: 1em;
+.link:hover{
+    color: var(--link-hover-color);
+    cursor: pointer;
 }
 
 #startBtn{
@@ -102,36 +89,126 @@ p{
     color: white;
     font-size: 3rem;
     text-decoration: underline;
+
 }
 
-
-/* classes */
-.infoBox {
-    border: solid;
+#game{
+    display: flex;
+    margin: auto;
+    margin-top: 1rem;
+    height: 100%;
+    width: var(--wrapperWidth);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.invis{
-    display: none;
-}
-
-.Ilink{
-    width: 20rem;
-    border:solid;
-    border-color: white;
-    transition: all 1s;
-}
-
-.Ilink:hover{
-    padding: 1rem;
+#HangPic{
+    /* border: 1px solid white; */
+    width: var(--pic-width)
 }
 
 .settingbox{
-    width: 50%;
-    height: 50%;
-    border: solid;
-    border-color: white;
-    display: flex;
-    flex-direction: column;
-    text-align: left;
+    border: 1px solid white;
 }
 
+.settingClass{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.infoBox{
+    width: 100%;
+    text-align: center;
+}
+
+.BtnStyle{
+    border: 0;
+    background-color: var(--btnBGColor);
+    color: var(--btnTextColor);
+    transition: 0.5s;
+}
+
+.BtnStyle:hover{
+    cursor: pointer;
+    background-color: var(--btnBGhoverColor);
+
+}
+
+#wordBox{
+    font-size: 3rem;
+    letter-spacing: 0.5rem;
+}
+
+#keybord{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    /* align-items: center; */
+}
+
+.lineStyle{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+}
+
+.letterBoxStyle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 1rem;
+    /* background-color: var(--btnBGColor); */
+    margin: 0.3rem;
+    width: 5rem;
+    /* height: 500px; */
+    transition: 0.5s;
+}
+
+/* .letterBoxStyle:hover{
+    cursor: pointer;
+    background-color: var(--btnBGhoverColor);
+} */
+
+.letterStyle{
+    margin: 0;
+    font-size: 2rem;
+    padding: 0;
+}
+
+.incorrectLetter {
+    background-color: #aa4444;
+    transition: 0.5s;
+}
+.incorrectLetter:hover{
+    background-color: #884444;
+}
+
+.correctLetter {
+    background-color: #44aa44;
+    transition: 0.5s;
+}
+.correctLetter:hover{
+    background-color: #448844;
+}
+
+.correctWord{
+    color: #44aa44;
+}
+.incorrectWord{
+    color: #aa4444;
+}
+
+
+#replay{
+    margin-top: 2rem;
+    border-radius: 2rem;
+    width: 12rem;
+    height: 3rem;
+
+    font-size: 2rem;
+}
