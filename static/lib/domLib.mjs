@@ -36,14 +36,20 @@ export function updateLetter(correct, letter){
 
 }
 
+export function toggleSettings(toggle){
+    const overlay = document.querySelector("#overlay");
+    if(toggle){
+        overlay.style.display = "flex";
+    } else {
+        overlay.style.display = "none";
+    }
+}
+
 export function updateDom(lives, livesCounter, underscores, hint, wordDef){
-    const settingPage = document.querySelector("#settings");
     const playPage = document.querySelector("#playing");
     const HangPic = document.querySelector("#HangPic");
     const hintP=document.querySelector("#hintP");
 
-    settingPage.classList.add("invis");
-    settingPage.classList.remove("settingClass");
     playPage.classList.remove("invis");
     wordBox.textContent = underscores.join("");
     HangPic.src = `assets/${lives}/${lives-livesCounter}.png`;

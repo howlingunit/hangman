@@ -1,14 +1,14 @@
 
 
 export async function fetchWords(){
-    const randomWords = document.querySelector("#randomWords");
-    const movies = document.querySelector("#movies");
-    const TVShows = document.querySelector("#TV-shows");
+    const elemRandomWords = document.querySelector("#randomWords");
+    const elemMovies = document.querySelector("#movies");
+    const elemTVShows = document.querySelector("#TV-shows");
 
     const payload = {
-        randomWords : randomWords.checked,
-        movies : movies.checked,
-        TVShows : TVShows.checked,
+        randomWords : elemRandomWords.checked,
+        movies : elemMovies.checked,
+        TVShows : elemTVShows.checked,
     }
 
 
