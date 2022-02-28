@@ -9,6 +9,8 @@ let win;
 let usedLetters;
 let hint = false;
 let word;
+let inGame;
+
 
 //start Functions/////////////////////////////////////////////////////////////////////////////////////
 export function init(){
@@ -23,15 +25,23 @@ function makeEventListeners(){
     for(let i = 0; i < keyButtons.length; i++){
         keyButtons[i].addEventListener("click", (e) => {turn(keyButtons[i].id)});
     }
+
     //real keyboard
     document.addEventListener("keydown", (e) => {
         if(/[a-z]/.test(e.key) && e.key.length === 1){
             turn(e.key);
         }
     })
+
     //replay button 
     const replay = document.querySelector("#replay");
     replay.addEventListener("click", reset);
+
+    //settings
+    const settingsLink = document.querySelector("#settingLink");
+    const startBtn = document.querySelector("#startBtn");
+    settingsLink.addEventListener("click", () => {domLib.toggleSettings(true)});
+    startBtn.addEventListener("click", startGame);
 }
 
 function reset(){
@@ -53,10 +63,16 @@ function reset(){
 }
 
 async function startGame(){
+    if(inGame){
+        inGame = false;
+        reset();
+    }
+    domLib.toggleSettings(false);
     word = await wordLib.fetchWords();
     hint = document.querySelector("#hintTrue").checked;
     setLives();
     domLib.updateDom(lives, livesCounter, word.underscores);
+    inGame = true;
 }
 
 function setLives(){
@@ -83,7 +99,6 @@ function turn(letter){
 
     info2.textContent = "";
     usedLetters.push(letter);
-    let place = 0;
     const OldUnderscour = [];
     for(const item of word.underscores){
         OldUnderscour.push(item);
@@ -93,7 +108,6 @@ function turn(letter){
             word.underscores[i] = letter;
             domLib.updateLetter(true, letter);
         }
-        place++;
     }
     if (OldUnderscour.join("") === word.underscores.join("")){
         domLib.updateLetter(false, letter);
@@ -107,9 +121,11 @@ function turn(letter){
     if(win){
         domLib.end(word.word, win);
         word = "";
+        inGame = false;
     } else if (livesCounter <= 0){
         domLib.end(word.word, win);
         word = "";
+        inGame = false;
     }
 }
 
