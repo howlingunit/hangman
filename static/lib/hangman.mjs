@@ -9,7 +9,6 @@ let win;
 let usedLetters;
 let hint = false;
 let word;
-let inGame;
 
 
 //start Functions/////////////////////////////////////////////////////////////////////////////////////
@@ -41,7 +40,7 @@ function makeEventListeners(){
     const settingsLink = document.querySelector("#settingLink");
     const startBtn = document.querySelector("#startBtn");
     settingsLink.addEventListener("click", () => {domLib.toggleSettings(true)});
-    startBtn.addEventListener("click", startGame);
+    startBtn.addEventListener("click", reset);
 }
 
 function reset(){
@@ -63,16 +62,11 @@ function reset(){
 }
 
 async function startGame(){
-    if(inGame){
-        inGame = false;
-        reset();
-    }
     domLib.toggleSettings(false);
     word = await wordLib.fetchWords();
     hint = document.querySelector("#hintTrue").checked;
     setLives();
     domLib.updateDom(lives, livesCounter, word.underscores);
-    inGame = true;
 }
 
 function setLives(){
@@ -121,11 +115,9 @@ function turn(letter){
     if(win){
         domLib.end(word.word, win);
         word = "";
-        inGame = false;
     } else if (livesCounter <= 0){
         domLib.end(word.word, win);
         word = "";
-        inGame = false;
     }
 }
 

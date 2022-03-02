@@ -54,21 +54,43 @@ p{
     --btnBGhoverColor:  #aaa;
     --btnTextColor: #fff;
     --btnStyleColor: lightblue;
+
+    --nav-justify-content: flex-start;
+    --nav-flex-direction: row;
+
+    --burger-display: none;
 }
 
 @media (max-width: 600px) {
     :root{
         --wrapperWidth: 100vw;
+
+        --burger-display: block;
+
+
     }
 }
 
 nav{
     display: flex;
     width: 100vw;
-    height: 10vh;
-    justify-content: flex-start;
+    height: 4rem;
+    flex-direction: var(--nav-flex-direction);
+    justify-content: var(--nav-justify-content);
     align-items: center;
     background-color: var(--nav-background-color);
+}
+
+.burgerBtn{
+    display: var(--burger-display);
+    width: 3rem;
+}
+
+.navLinks{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .link{
@@ -142,7 +164,6 @@ nav{
 }
 
 #wordBox{
-    white-space: nowrap;
     font-size: 3rem;
     letter-spacing: 0.5rem;
 }

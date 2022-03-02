@@ -1,3 +1,14 @@
+export function navBar(){
+    const maxWidth = window.matchMedia("(max-width: 600px)");
+    const links = document.querySelectorAll(".link");
+
+    if (maxWidth.matches){
+        for(let i = 0; links > i; i++){
+            links[i].classList.add("BtnStyle");
+        }
+    }
+}
+
 export function createKeyboard(){
     const keys = ["nl","q","w","e","r","t","y","u","i","o","p","nl","a","s","d","f","g","h","j","k","l","nl","z","x","c","v","b","n","m"]
     const keyboardDiv = document.querySelector("#keyboard");
