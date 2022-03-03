@@ -21,7 +21,7 @@ body{
     background-color: black;
     font-family: sans-serif;
     color: white;
-    padding: auto;
+    padding: 0;
 }
 
 h1 {
@@ -58,21 +58,30 @@ p{
     --nav-justify-content: flex-start;
     --nav-flex-direction: row;
 
-    --burger-display: none;
+
+    --nav-big-display: flex;
+    --nav-small-display: none;
 }
 
 @media (max-width: 600px) {
     :root{
         --wrapperWidth: 100vw;
 
-        --burger-display: block;
-
+        --nav-big-display: none;
+        --nav-small-display: flex;
+        --nav-flex-direction: column;
 
     }
 }
 
+.big{
+    display: var(--nav-big-display);
+}
+.small{
+    display: var(--nav-small-display);
+}
+
 nav{
-    display: flex;
     width: 100vw;
     height: 4rem;
     flex-direction: var(--nav-flex-direction);
@@ -81,14 +90,20 @@ nav{
     background-color: var(--nav-background-color);
 }
 
+#nav-top{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
 .burgerBtn{
-    display: var(--burger-display);
     width: 3rem;
 }
 
 .navLinks{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
