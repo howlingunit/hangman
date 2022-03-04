@@ -1,12 +1,23 @@
-export function navBar(){
+export function navBarSetup(){
     const maxWidth = window.matchMedia("(max-width: 600px)");
-    const links = document.querySelectorAll(".link");
+    const burgerButton = document.querySelector(".burgerBtn");
 
     if (maxWidth.matches){
-        for(let i = 0; links > i; i++){
-            links[i].classList.add("BtnStyle");
-        }
+        burgerButton.addEventListener("click", navBar)
     }
+}
+
+function navBar(){
+    const nav = document.querySelector(".small");
+    const navLinks = document.querySelector(".navLinks");
+
+    if(navLinks.style.display == "none"){
+        nav.style.height = "13rem"
+        navLinks.style.display = "grid"
+        return;
+    }
+    nav.style.height = "4rem"
+    navLinks.style.display = "none";
 }
 
 export function createKeyboard(){
