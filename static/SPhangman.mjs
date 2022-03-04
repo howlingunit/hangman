@@ -1,3 +1,5 @@
-import * as hangman from "./lib/hangman.mjs";
+import * as domLib from './lib/domLib.mjs';
+import * as hangman from './lib/hangman.mjs';
 
-hangman.init()
+domLib.navBarSetup();
+hangman.init();
