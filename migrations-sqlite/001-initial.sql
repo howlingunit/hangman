@@ -7,10 +7,10 @@ CREATE TABLE words(
     category varchar(10)
 );
 
-INSERT INTO word(id, word, def, category) VALUES(
-    (1, 'test', 'def of the word test', 'testCat'),
+INSERT INTO words(id, word, def, category) VALUES(
+    1, 'test', 'def of the word test', 'testCat'
 )
 
 --down
 
-DROP TABLE words;
+-- DROP TABLE IF EXISTS words;
