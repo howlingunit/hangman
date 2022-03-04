@@ -7,4 +7,4 @@ app.use(express.static('static'));
 
 app.post("/getWord", express.json(), pickWord);
 
-app.listen(8080);
+app.listen(8081);
