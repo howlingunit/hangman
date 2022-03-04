@@ -7,7 +7,7 @@ export function navBarSetup() {
   }
 }
 
-function navBar() {
+export function navBar() {
   const nav = document.querySelector('.small');
   const navLinks = document.querySelector('.navLinks');
 

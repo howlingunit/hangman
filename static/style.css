@@ -106,9 +106,6 @@ nav{
     display: none;
     margin-top: 0.5rem;
     grid-template-rows: repeat(3, 1fr); 
-    /* flex-direction: column;
-    justify-content: center;
-    align-items: center; */
 
 }
 
@@ -130,7 +127,7 @@ nav{
     width: 100vw;
     height: 3rem;
     justify-content: center;
-    text-align: center;
+
 
 }
 
