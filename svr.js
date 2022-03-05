@@ -10,5 +10,3 @@ app.post('/getWord', express.json(), pickWord);
 
 app.listen(8081);
 // sql.pushWords();
-const sqlRes = sql.listWords()
-console.log(await sqlRes);
