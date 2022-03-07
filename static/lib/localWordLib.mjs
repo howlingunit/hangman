@@ -5,13 +5,8 @@ export async function fetchWords() {
   const elemMovies = document.querySelector('#movies');
   const elemTVShows = document.querySelector('#TV-shows');
 
-  const payload = {
-    randomWords: elemRandomWords.checked,
-    movies: elemMovies.checked,
-    TVShows: elemTVShows.checked,
-  };
-  const urlPrams = `${elemRandomWords.checked}.${elemMovies.checked}.${elemTVShows.checked}.false`;
 
+  const urlPrams = `${elemRandomWords.checked}.${elemMovies.checked}.${elemTVShows.checked}.false`;
 
   const response = await fetch(`word/${urlPrams}`);
 
