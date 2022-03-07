@@ -228,6 +228,7 @@ nav{
 }
 
 .incorrectLetter {
+    display: hidden;
     background-color: #aa4444;
     transition: 0.5s;
 }
@@ -236,6 +237,7 @@ nav{
 }
 
 .correctLetter {
+    display: hidden;
     background-color: #44aa44;
     transition: 0.5s;
 }

@@ -7,6 +7,10 @@ const app = express();
 app.use(express.static('static'));
 
 app.post('/getWord', express.json(), pickWord);
+app.get('/word/:random.:movie.:tvshow.:user', (req, res) => {
+  console.log(req.params);
+  res.send(req.params);
+});
 
 app.listen(8081);
 // sql.pushWords();
