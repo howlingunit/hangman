@@ -6,8 +6,11 @@ const app = express();
 
 app.use(express.static('static'));
 
-// app.get('/word/:random.:movie.:tvshow.:user', word.pickWord);
 app.get('/word', word.pickWord);
+
+app.post('/submitWord', express.json(), word.submitWord);
+
+app.listen(8081);
 
 // app.get('/test', (req, res) => {
 // //   for (const prams of req.query) {
@@ -15,11 +18,6 @@ app.get('/word', word.pickWord);
 // //   }
 //   res.send(req.query);
 // });
-
-app.post('/getWord', express.json(), word.pickWord);
-
-
-app.listen(8081);
 
 // console.log(await sql.listWords());
 // sql.pushWords();
