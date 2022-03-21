@@ -1,6 +1,6 @@
 import express from 'express';
 import * as word from './lib/wordLib.mjs';
-// import * as sql from './lib/SqlInit.mjs';
+import * as sql from './lib/sql.mjs';
 
 const app = express();
 
