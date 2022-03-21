@@ -67,7 +67,7 @@ async function startGame() {
   word = await wordLib.fetchWords();
   hint = document.querySelector('#hintTrue').checked;
   setLives();
-  domLib.updateDom(lives, livesCounter, word.underscores);
+  domLib.updateDom(lives, livesCounter, word.underscore);
 }
 
 function setLives() {
@@ -94,24 +94,24 @@ function turn(letter) {
 
   usedLetters.push(letter);
   const OldUnderscour = [];
-  for (const item of word.underscores) {
+  for (const item of word.underscore) {
     OldUnderscour.push(item);
   }
   for (let i = 0; i < word.word.length; i++) {
     if (word.word[i] === letter) {
-      word.underscores[i] = letter;
+      word.underscore[i] = letter;
       domLib.updateLetter(true, letter);
     }
   }
-  if (OldUnderscour.join('') === word.underscores.join('')) {
+  if (OldUnderscour.join('') === word.underscore.join('')) {
     domLib.updateLetter(false, letter);
     livesCounter -= 1;
   }
 
   // end of turn
-  domLib.updateDom(lives, livesCounter, word.underscores, hint, word.def);
+  domLib.updateDom(lives, livesCounter, word.underscore, hint, word.def);
 
-  win = word.underscores.join('') === word.word;
+  win = word.underscore.join('') === word.word;
   if (win) {
     domLib.end(word.word, win);
     word = '';

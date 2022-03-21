@@ -1,27 +1,20 @@
 
 
-export async function fetchWords(){
-    const elemRandomWords = document.querySelector("#randomWords");
-    const elemMovies = document.querySelector("#movies");
-    const elemTVShows = document.querySelector("#TV-shows");
+export async function fetchWords() {
+  const elemRandomWords = document.querySelector('#randomWords');
+  const elemMovies = document.querySelector('#movies');
+  const elemTVShows = document.querySelector('#TV-shows');
+  const elemUsers = document.querySelector('#userSubmited');
 
-    const payload = {
-        randomWords : elemRandomWords.checked,
-        movies : elemMovies.checked,
-        TVShows : elemTVShows.checked,
-    }
+  // const urlPrams = `random=${elemRandomWords.checked}&movie=${elemMovies.checked}&tvshow=${elemTVShows.checked}&user=false`;
+  const urlPrams = `words=${elemRandomWords.checked},${elemMovies.checked}&tvshow=${elemTVShows.checked}&user=${elemUsers.checked}`;
 
+  const response = await fetch(`word/?${urlPrams}`);
 
-    const response = await fetch("getword", {
-        method: "POST",
-        headers: {"Content-Type" : "application/json"},
-        body: JSON.stringify(payload)
-    });
-
-    if(response.ok){
-        return await response.json();
-    } else{
-        console.error(`svr error Code:${response.code}`);
-        return "error";
-    }
+  if (response.ok) {
+    return await response.json();
+  } else {
+    console.error(`svr error Code:${response.code}`);
+    return 'error';
+  }
 }

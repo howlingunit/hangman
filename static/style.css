@@ -61,6 +61,8 @@ p{
 
     --nav-big-display: flex;
     --nav-small-display: none;
+
+    --textBoxWidth: 60vw;
 }
 
 @media (max-width: 600px) {
@@ -70,6 +72,8 @@ p{
         --nav-big-display: none;
         --nav-small-display: flex;
         --nav-flex-direction: column;
+        --textBoxWidth: 95vw;
+
 
     }
 }
@@ -228,6 +232,7 @@ nav{
 }
 
 .incorrectLetter {
+    display: hidden;
     background-color: #aa4444;
     transition: 0.5s;
 }
@@ -236,6 +241,7 @@ nav{
 }
 
 .correctLetter {
+    display: hidden;
     background-color: #44aa44;
     transition: 0.5s;
 }
@@ -274,3 +280,34 @@ nav{
     margin: 0;
     transition: 5s;
   }
+
+  .textBox {
+      border:0;
+      margin: 0.5rem;
+      background-color: #333333;
+      border-radius: 3rem;
+      height: 3rem;
+      width: var(--textBoxWidth);
+      text-align: center;
+      color: #fff;
+      font-size: 2em;
+  }
+
+.pageHeader {
+    text-decoration: none;
+    font-size: 3rem;
+    letter-spacing: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+#subNewWord {
+    border-radius: 3rem;
+    margin-top: 0rem;
+    height: 3rem;
+    width: 10rem;
+    font-size: 2rem;
+}
+
+#responseText {
+    font-size: 1.5rem;
+}

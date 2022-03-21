@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>hangman - word adder</title>
+</head>
+<body>
+    <nav class="big">
+        <h1 id="title">Hangman</h1>
+        <a href="./multiplayer.html"><h3 class="link">multiplayer</h3></a>
+        <a href="./index.html"><h3 class="link">single player</h3></a></a>
+    </nav>
+
+    <nav class="small">
+        <div id="nav-top">
+            <img src="./assets/menu.png" alt="a button" class="burgerBtn">
+            <h1 id="title">Hangman</h1>
+        </div>
+        <div class="navLinks">
+            <a href="./multiplayer.html"><div class="BtnStyle linkBtn"><h3 class="link">multiplayer</h3></div></a>
+            <a href="./index.html"><div class="BtnStyle linkBtn"><h3 class="link">single player</h3></div></a>
+
+    </nav>
+
+    <section id="game">
+        <h2 class="pageHeader">Add Word</h2>
+        <input placeholder='word' type="text" name="newWord" id="newWord" class="textBox">
+        <textarea placeholder='hint' name="newHint" id="newHint" class="textBox"></textarea>
+        <p id="responseText"></p>
+        <button id="subNewWord" class="BtnStyle"">submit</button>
+    </section>
+
+    <script src="./addword.mjs" type="module"></script>
+</body>
+</html>
