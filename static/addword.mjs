@@ -9,11 +9,13 @@ function eventListeners() {
 }
 
 async function sendWord() {
-  const word = document.querySelector('#newWord').value;
-  const def = document.querySelector('#newHint').value;
+  const word = document.querySelector('#newWord');
+  const def = document.querySelector('#newHint');
   const responseText = document.querySelector('#responseText');
+  const subButton = document.querySelector('#subNewWord');
 
-  const payload = { word, def };
+
+  const payload = { word: word.value, def: def.value };
 
   const response = await fetch('/submitWord', {
     method: 'POST',
@@ -21,8 +23,12 @@ async function sendWord() {
     body: JSON.stringify(payload),
   });
   if (await response.ok) {
-    responseText.textContent = 'ok!';
+    subButton.classList.add('correctLetter');
+    word.value = '';
+    def.value = '';
+    responseText.textContent = 'Your word has been added!';
   } else {
     responseText.textContent = await response.json();
+    subButton.classList.add('incorrectLetter');
   }
 }

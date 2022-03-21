@@ -26,13 +26,11 @@
     </nav>
 
     <section id="game">
-        <h3>input word:</h3>
-        <input type="text" name="newWord" id="newWord">
-
-        <h3>input word hint:</h3>
-        <input type="text" name="newHint" id="newHint">
-        <button id="subNewWord">submit</button>
+        <h2 class="pageHeader">Add Word</h2>
+        <input placeholder='word' type="text" name="newWord" id="newWord" class="textBox">
+        <textarea placeholder='hint' name="newHint" id="newHint" class="textBox"></textarea>
         <p id="responseText"></p>
+        <button id="subNewWord" class="BtnStyle"">submit</button>
     </section>
 
     <script src="./addword.mjs" type="module"></script>
