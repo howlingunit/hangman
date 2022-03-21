@@ -1,0 +1,23 @@
+help:
+
+add padding to elements
+make options labels
+change cursor on start btn
+modals want to handle escape and have a close button
+the game page needs some instructions
+maybe have a placeholder picture for the hangman
+naming of files fragile 
+don't ovrabbrv
+draw a dependency graph
+
+
+?movies=true&random=true&a=false&b=false&c=false
+?movies&random
+
+?categories=movies,random
+
+---MAIN POINTS---
+fix names
+draw a dependency graph
+improve styling and usability
+oh and fix the "send categories" to csv
