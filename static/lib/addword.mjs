@@ -1,4 +1,4 @@
-import * as domLib from './lib/domLib.mjs';
+import * as domLib from './domLib.mjs';
 
 domLib.navBarSetup();
 eventListeners();

@@ -1,6 +1,6 @@
 import express from 'express';
 import * as word from './lib/wordLib.mjs';
-import * as sql from './lib/sql.mjs';
+// import * as sql from './lib/sql.mjs';
 
 const app = express();
 
@@ -18,6 +18,3 @@ app.listen(8081);
 // //   }
 //   res.send(req.query);
 // });
-
-// console.log(await sql.listWords());
-// sql.pushWords();

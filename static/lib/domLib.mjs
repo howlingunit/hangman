@@ -1,10 +1,6 @@
 export function navBarSetup() {
-  const maxWidth = window.matchMedia('(max-width: 600px)');
   const burgerButton = document.querySelector('.burgerBtn');
-
-  if (maxWidth.matches) {
-    burgerButton.addEventListener('click', navBar);
-  }
+  burgerButton.addEventListener('click', navBar);
 }
 
 export function navBar() {
@@ -18,6 +14,15 @@ export function navBar() {
   }
   nav.style.height = '4rem';
   navLinks.style.display = 'none';
+}
+
+export function toggleSettings(toggle) {
+  const overlay = document.querySelector('#overlay');
+  if (toggle) {
+    overlay.style.display = 'flex';
+  } else {
+    overlay.style.display = 'none';
+  }
 }
 
 export function createKeyboard() {
@@ -52,15 +57,6 @@ export function updateLetter(correct, letter) {
     } else if (letters[i].id === letter && !(correct)) {
       letters[i].classList.add('incorrectLetter');
     }
-  }
-}
-
-export function toggleSettings(toggle) {
-  const overlay = document.querySelector('#overlay');
-  if (toggle) {
-    overlay.style.display = 'flex';
-  } else {
-    overlay.style.display = 'none';
   }
 }
 

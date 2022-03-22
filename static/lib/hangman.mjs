@@ -2,7 +2,6 @@ import * as wordLib from './localWordLib.mjs';
 import * as domLib from './domLib.mjs';
 
 
-// VARS/////////////////////////////////////////////////////////////////////////////////////////////
 let livesCounter;
 let lives;
 let win;
@@ -11,14 +10,13 @@ let hint = false;
 let word;
 
 
-// start Functions/////////////////////////////////////////////////////////////////////////////////////
 export function init() {
   domLib.createKeyboard();
-  makeEventListeners();
+  addEventListeners();
   reset();
 }
 
-function makeEventListeners() {
+function addEventListeners() {
   // screen keyboard listeners
   const keyButtons = document.querySelectorAll('.letterBoxStyle');
   for (let i = 0; i < keyButtons.length; i++) {
@@ -87,7 +85,6 @@ function setLives() {
   }
 }
 
-// In Game Functions////////////////////////////////////////////////////////////////////////////////////////
 function turn(letter) {
   if (usedLetters.includes(letter)) { return; }
   if (!word) { return; }

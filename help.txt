@@ -3,7 +3,7 @@ help:
 add padding to elements
 make options labels
 change cursor on start btn
-modals want to handle escape and have a close button
+modals (settings overlay) want to handle escape and have a close button
 the game page needs some instructions
 maybe have a placeholder picture for the hangman
 naming of files fragile 
