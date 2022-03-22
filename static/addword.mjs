@@ -17,7 +17,7 @@ async function sendWord() {
 
   const payload = { word: word.value, def: def.value };
 
-  const response = await fetch('/submitWord', {
+  const response = await fetch('/addWord', {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify(payload),
