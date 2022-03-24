@@ -8,7 +8,7 @@ app.use(express.static('static'));
 
 app.get('/word', word.pickWord);
 
-app.post('/addWord', express.json(), word.submitWord);
+app.post('/addWord', express.json(), word.addWord);
 
 app.listen(8081);
 
