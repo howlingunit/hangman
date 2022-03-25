@@ -23,12 +23,14 @@ async function sendWord() {
     body: JSON.stringify(payload),
   });
   if (await response.ok) {
+    subButton.classList.remove('incorrectLetter');
     subButton.classList.add('correctLetter');
     word.value = '';
     def.value = '';
     responseText.textContent = 'Your word has been added!';
   } else {
     responseText.textContent = await response.json();
+    subButton.classList.remove('correctLetter');
     subButton.classList.add('incorrectLetter');
   }
 }
