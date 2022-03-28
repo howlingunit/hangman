@@ -6,7 +6,7 @@ change cursor on start btn
 modals (settings overlay) want to handle escape and have a close button
 the game page needs some instructions
 maybe have a placeholder picture for the hangman
-naming of files fragile 
+naming of files fragile (DON'T USE CAPS IN FILE NAMES!)
 don't ovrabbrv
 draw a dependency graph
 
