@@ -48,7 +48,7 @@ INSERT INTO words(id, word, def, category) VALUES
     (37, 'bee movie', 'bees with humans', 'movie'),
 
     (38, 'the A team', 'a team', 'tvshow'),
-    (49, 'the IT crowd', 'a IT team', 'tvshow'),
+    (39, 'the IT crowd', 'a IT team', 'tvshow'),
     (40, 'strange things', 'upside down', 'tvshow'),
     (41, 'friends', 'people who will be there for you when the rain starts to fall', 'tvshow'),
     (42, 'the mandalorian', 'space bounty hunter', 'tvshow'),
