@@ -1,5 +1,5 @@
-import * as wordLib from './localWordLib.mjs';
-import * as domLib from './domLib.mjs';
+import * as wordLib from './localwordlib.mjs';
+import * as domLib from './domlib.mjs';
 
 
 let livesCounter;
