@@ -148,7 +148,6 @@ nav{
 #game{
     display: flex;
     margin: 0;
-    margin-top: 1rem;
     max-height: 80vh;
     max-width: 100vw;
     flex-direction: column;
@@ -157,8 +156,10 @@ nav{
 }
 
 #HangPic{
-    /* border: 1px solid white; */
-    max-height: var(--pic-width);
+    border: 0.2rem solid #333;
+    border-radius: 0.5rem;
+    height: var(--pic-width);
+    margin: 0;
 }
 
 .settingbox{
@@ -233,21 +234,33 @@ nav{
 }
 
 .incorrectLetter {
-    display: hidden;
-    background-color: #aa4444;
+    /* opacity: 0; */
+    /* background-color: #aa4444; */
+    background-color: #662222;
     transition: 0.5s;
 }
 .incorrectLetter:hover{
-    background-color: #884444;
+    background-color: #662222;
+    cursor: not-allowed;
 }
 
 .correctLetter {
-    display: hidden;
-    background-color: #44aa44;
+    /* opacity: 0; */
+    /* background-color: #44aa44; */
+    background-color: #227722;
     transition: 0.5s;
 }
 .correctLetter:hover{
-    background-color: #448844;
+    background-color: #227722;
+    cursor: not-allowed;
+}
+
+.disabledLetter {
+    opacity: 0.3;
+}
+.disabledLetter:hover {
+    cursor: default;
+    background-color: var(--btnBGColor);
 }
 
 .correctWord{
@@ -256,7 +269,6 @@ nav{
 .incorrectWord{
     color: #aa4444;
 }
-
 
 #replay{
     margin-top: 2rem;

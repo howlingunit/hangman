@@ -48,6 +48,14 @@ export function createKeyboard() {
   }
 }
 
+function deactivateKeyboard() {
+  const keys = document.querySelectorAll('.letterBoxStyle');
+  for (let i = 0; i < keys.length; i++) {
+    if (keys[i].classList.contains('incorrectLetter') || keys[i].classList.contains('correctLetter')) { continue; }
+    keys[i].classList.add('disabledLetter');
+  }
+}
+
 export function updateLetter(correct, letter) {
   const letters = document.querySelectorAll('.letterBoxStyle');
   for (let i = 0; i < letters.length; i++) {
@@ -78,6 +86,7 @@ export function updateDom(lives, livesCounter, underscores, hint, wordDef) {
 export function end(completeWord, win) {
   const endPage = document.querySelector('#end');
   const wordBox = document.querySelector('#wordBox');
+  deactivateKeyboard();
   endPage.classList.remove('invis');
   if (!win) {
     wordBox.textContent = completeWord;
