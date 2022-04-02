@@ -48,10 +48,10 @@ p{
     --nav-background-color: #333333;
 
     --wrapperWidth: 90vh;
-    --pic-width: 25%;
+    --pic-width: 35%;
 
     --btnBGColor:  #555;
-    --btnBGhoverColor:  #aaa;
+    --btnBGhoverColor:  #888;
     --btnTextColor: #fff;
     --btnStyleColor: lightblue;
 
@@ -102,6 +102,19 @@ nav{
 
 }
 
+.BtnStyle{
+    border: 0;
+    background-color: var(--btnBGColor);
+    color: var(--btnTextColor);
+    transition: 0.5s;
+}
+
+.BtnStyle:hover{
+    cursor: pointer;
+    background-color: var(--btnBGhoverColor);
+
+}
+
 .burgerBtn{
     width: 3rem;
 }
@@ -135,37 +148,32 @@ nav{
 
 }
 
-#startBtn{
-    width: 100%;
-    height: 100%;
-    background-color: #555;
-    color: white;
-    font-size: 3rem;
-    text-decoration: underline;
-
-}
-
 #game{
     display: flex;
-    margin: 0;
-    max-height: 80vh;
+    height: 100vh;
     max-width: 100vw;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
-#HangPic{
-    border: 0.2rem solid #333;
-    border-radius: 0.5rem;
-    height: var(--pic-width);
-    margin: 0;
+
+#settingLink {
+    width: 100vw;
+    height: 2.5rem;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.5rem;
 }
 
 .settingbox{
-    border: 1px solid white;
-
+    border: 0.1rem solid white;
+    padding: 0.2rem;
+    
 }
+
 
 .settingClass{
     display: grid;
@@ -181,17 +189,21 @@ nav{
     text-align: center;
 }
 
-.BtnStyle{
-    border: 0;
-    background-color: var(--btnBGColor);
-    color: var(--btnTextColor);
-    transition: 0.5s;
+#startBtn{
+    width: 100%;
+    height: 100%;
+    font-size: 3rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.BtnStyle:hover{
-    cursor: pointer;
-    background-color: var(--btnBGhoverColor);
-
+#HangPic{
+    border: 0.2rem solid #333;
+    border-radius: 0.5rem;
+    height: var(--pic-width);
+    margin-top: 1rem;
 }
 
 #wordBox{

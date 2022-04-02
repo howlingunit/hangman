@@ -8,7 +8,7 @@ export function navBar() {
   const navLinks = document.querySelector('.navLinks');
 
   if (navLinks.style.display === 'none') {
-    nav.style.height = '13rem';
+    nav.style.height = '7rem';
     navLinks.style.display = 'grid';
     return;
   }
