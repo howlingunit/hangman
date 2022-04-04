@@ -3,27 +3,6 @@ export function navBarSetup() {
   burgerButton.addEventListener('click', navBar);
 }
 
-// export function navBar() {
-//   const root = document.querySelector(':root');
-//   console.log(getComputedStyle(root).getPropertyValue('--navLinks-display'));
-//   if (getComputedStyle(root).getPropertyValue('--navLinks-display') === 'none') {
-//     root.style.setProperty('--nav-small-height', '7rem');
-//     root.style.setProperty('--navLinks-display', 'grid');
-//     return;
-//   }
-//   root.style.setProperty('--nav-small-height', '4rem');
-//   root.style.setProperty('--navLinks-display', 'none');
-// }
-
-// export function toggleSettings(toggle) {
-//   const overlay = document.querySelector('#overlay');
-//   if (toggle) {
-//     overlay.style.display = 'flex';
-//   } else {
-//     overlay.style.display = 'none';
-//   }
-// }
-
 export function navBar() {
   const nav = document.querySelector('.small');
   const navLinks = document.querySelector('.navLinks');

@@ -38,7 +38,7 @@ function addEventListeners() {
   const settingsLinks = document.querySelectorAll('#settingLink');
   const startBtn = document.querySelector('#startBtn');
   for (let i = 0; i < settingsLinks.length; i++) {
-    settingsLinks[i].addEventListener('click', () => { domLib.navBar(); domLib.toggleSettings(true); });
+    settingsLinks[i].addEventListener('click', () => { domLib.toggleSettings(true); });
   }
   startBtn.addEventListener('click', reset);
 }
