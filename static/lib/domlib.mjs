@@ -4,16 +4,15 @@ export function navBarSetup() {
 }
 
 export function navBar() {
-  const nav = document.querySelector('.small');
-  const navLinks = document.querySelector('.navLinks');
+  const root = document.querySelector(':root');
 
-  if (navLinks.style.display === 'none') {
-    nav.style.height = '7rem';
-    navLinks.style.display = 'grid';
+  if (getComputedStyle(root).getPropertyValue('--navLinks-display') === 'none') {
+    root.style.setProperty('--nav-small-height', '7rem');
+    root.style.setProperty('--navLinks-display', 'grid');
     return;
   }
-  nav.style.height = '4rem';
-  navLinks.style.display = 'none';
+  root.style.setProperty('--nav-small-height', '4rem');
+  root.style.setProperty('--navLinks-display', 'none');
 }
 
 export function toggleSettings(toggle) {
