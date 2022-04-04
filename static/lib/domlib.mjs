@@ -3,16 +3,37 @@ export function navBarSetup() {
   burgerButton.addEventListener('click', navBar);
 }
 
-export function navBar() {
-  const root = document.querySelector(':root');
+// export function navBar() {
+//   const root = document.querySelector(':root');
+//   console.log(getComputedStyle(root).getPropertyValue('--navLinks-display'));
+//   if (getComputedStyle(root).getPropertyValue('--navLinks-display') === 'none') {
+//     root.style.setProperty('--nav-small-height', '7rem');
+//     root.style.setProperty('--navLinks-display', 'grid');
+//     return;
+//   }
+//   root.style.setProperty('--nav-small-height', '4rem');
+//   root.style.setProperty('--navLinks-display', 'none');
+// }
 
-  if (getComputedStyle(root).getPropertyValue('--navLinks-display') === 'none') {
-    root.style.setProperty('--nav-small-height', '7rem');
-    root.style.setProperty('--navLinks-display', 'grid');
+// export function toggleSettings(toggle) {
+//   const overlay = document.querySelector('#overlay');
+//   if (toggle) {
+//     overlay.style.display = 'flex';
+//   } else {
+//     overlay.style.display = 'none';
+//   }
+// }
+
+export function navBar() {
+  const nav = document.querySelector('.small');
+  const navLinks = document.querySelector('.navLinks');
+  if (navLinks.classList.contains('navLinksOpen')) {
+    navLinks.classList.remove('navLinksOpen');
+    nav.classList.remove('smallOpen');
     return;
   }
-  root.style.setProperty('--nav-small-height', '4rem');
-  root.style.setProperty('--navLinks-display', 'none');
+  navLinks.classList.add('navLinksOpen');
+  nav.classList.add('smallOpen');
 }
 
 export function toggleSettings(toggle) {

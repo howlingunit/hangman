@@ -87,6 +87,10 @@ p{
 .small{
     display: var(--nav-small-display);
     height: var(--nav-small-height);
+    transition: 0.2s;
+}
+.smallOpen{
+    height: 7rem;
 }
 
 nav{
@@ -127,7 +131,9 @@ nav{
     display: var(--navLinks-display);
     margin-top: 0.5rem;
     grid-template-rows: repeat(3, 1fr); 
-
+}
+.navLinksOpen{
+    display: grid;
 }
 
 .link{
