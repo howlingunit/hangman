@@ -1,4 +1,5 @@
 database.sqlite
+package-lock.json
 vscode/
 node_modules/
 .git/
