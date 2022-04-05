@@ -9,4 +9,4 @@ app.get('/word', word.pickWord);
 
 app.post('/addWord', express.json(), word.addWord);
 
-app.listen(8081);
+app.listen(8080);
