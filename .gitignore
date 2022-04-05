@@ -1,0 +1,4 @@
+database.sqlite
+vscode/
+node_modules/
+.git/

@@ -1,8 +1,7 @@
-import * as wordLib from './localWordLib.mjs';
-import * as domLib from './domLib.mjs';
+import * as wordLib from './localwordlib.mjs';
+import * as domLib from './domlib.mjs';
 
 
-// VARS/////////////////////////////////////////////////////////////////////////////////////////////
 let livesCounter;
 let lives;
 let win;
@@ -11,14 +10,13 @@ let hint = false;
 let word;
 
 
-// start Functions/////////////////////////////////////////////////////////////////////////////////////
 export function init() {
   domLib.createKeyboard();
-  makeEventListeners();
+  addEventListeners();
   reset();
 }
 
-function makeEventListeners() {
+function addEventListeners() {
   // screen keyboard listeners
   const keyButtons = document.querySelectorAll('.letterBoxStyle');
   for (let i = 0; i < keyButtons.length; i++) {
@@ -40,7 +38,7 @@ function makeEventListeners() {
   const settingsLinks = document.querySelectorAll('#settingLink');
   const startBtn = document.querySelector('#startBtn');
   for (let i = 0; i < settingsLinks.length; i++) {
-    settingsLinks[i].addEventListener('click', () => { domLib.navBar(); domLib.toggleSettings(true); });
+    settingsLinks[i].addEventListener('click', () => { domLib.toggleSettings(true); });
   }
   startBtn.addEventListener('click', reset);
 }
@@ -87,7 +85,6 @@ function setLives() {
   }
 }
 
-// In Game Functions////////////////////////////////////////////////////////////////////////////////////////
 function turn(letter) {
   if (usedLetters.includes(letter)) { return; }
   if (!word) { return; }

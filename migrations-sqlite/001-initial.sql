@@ -47,19 +47,19 @@ INSERT INTO words(id, word, def, category) VALUES
     (36, 'worlds end', 'pubs cornetto', 'movie'),
     (37, 'bee movie', 'bees with humans', 'movie'),
 
-    (39, 'the A team', 'a team', 'tvshow'),
-    (40, 'the IT crowd', 'a IT team', 'tvshow'),
-    (41, 'strange things', 'upside down', 'tvshow'),
-    (42, 'friends', 'people who will be there for you when the rain starts to fall', 'tvshow'),
-    (43, 'the mandalorian', 'space bounty hunter', 'tvshow'),
-    (44, 'community', '6 seasons and a movie', 'tvshow'),
-    (45, 'dirk gentlys holistic detective agency', 'everthing is connected', 'tvshow'),
-    (46, 'queens gambit', 'chess', 'tvshow'),
-    (47, 'star trek', 'picard or kirk', 'tvshow'),
-    (48, 'the office', 'the best boss', 'tvshow'),
-    (49, 'brooklyn nine nine', 'NINE! NINE!', 'tvshow'),
+    (38, 'the A team', 'a team', 'tvshow'),
+    (39, 'the IT crowd', 'a IT team', 'tvshow'),
+    (40, 'strange things', 'upside down', 'tvshow'),
+    (41, 'friends', 'people who will be there for you when the rain starts to fall', 'tvshow'),
+    (42, 'the mandalorian', 'space bounty hunter', 'tvshow'),
+    (43, 'community', '6 seasons and a movie', 'tvshow'),
+    (44, 'dirk gentlys holistic detective agency', 'everthing is connected', 'tvshow'),
+    (45, 'queens gambit', 'chess', 'tvshow'),
+    (46, 'star trek', 'picard or kirk', 'tvshow'),
+    (47, 'the office', 'the best boss', 'tvshow'),
+    (48, 'brooklyn nine nine', 'NINE! NINE!', 'tvshow'),
 
-    (50, 'first', 'the first user submitted word', 'user');
+    (49, 'first', 'the first user submitted word', 'user');
 
 --down
 
