@@ -19,19 +19,20 @@ This will start the HTTP server running on 8080, and it should work with no extr
 If it worked, when you connect to the server, you should view this:
 ![an image of the hangman game](./readme_assets/expected-output.png)
 
-It should be noted that this setup works on both *nix and windows devices. 
+It should be noted that this setup works on any *nix or windows enviroment provided it can support the latest version of node and NPM. 
 ## feature details
-### On setup
+### Database and word managment
 When the `npm start` is first run, the program will go through the [DB setup script](./migrations-sqlite/001-initial.sql) and database.sqlite will be created; this DB contains the words table with all the 49 pre-made words from the setup script. You can edit and add to this; however, you must have at least one word for each category. Each word needs an:
 * ID (INT)
 * a word (a string up to 45 char, must be unique. for the game to work it cannot contain symbols or numbers. Spaces are allowed)
 * a hint/def (all characters allowed, must not be NULL)
 * category (must be within the four categories of the game ‘random’ ‘movie’ ‘tvshow’ ‘user’, cannot be in more than one category)
-### The main game
 
-
-### User-submitted words
+### DOM layout and functions 
+### game logic
+### User-submitted words logic
 ## to-do
+* fix bug where user can not choose a category and the game lets that happen but will break
 * ability to exit the settings menu
 * Change hangman PNG to canvas or SVG
 * accessibility
