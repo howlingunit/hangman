@@ -5,13 +5,13 @@ This is a hangman web app built with node.js using the express framework and SQL
 Most importantly, it allows a user to play the standard game but also allows for these settings to be changed:
 * A user can pick which word categories they want from pre-made lists (customizable in the [DB setup script](./migrations-sqlite/001-initial.sql)) and user-submitted words.
 * how many lives are available, they can choose between 4/8/12 lives.
-* if a hint is to be displayed after half the user’s lives are used.
+* if a hint is to be displayed after half the user's lives are used.
 
-Another key feature of this site is the inclusion of “user-submitted words”. This allows users to submit their own words and their hints to the database (before these words are added, it goes through a checking function that ensures it’s a valid word). Players can then choose these words as a category in the settings menu.
+Another key feature of this site is the inclusion of "user-submitted words". This allows users to submit their own words and their hints to the database (before these words are added, it goes through a checking function that ensures it's a valid word). Players can then choose these words as a category in the settings menu.
 ## Setup
 1. ensure you have the latest version of Node and NPM installed
 2. in terminal/cmd, go to the folder where the files are installed
-3. run `npm i’ to install the dependencies 
+3. run `npm i' to install the dependencies 
 4. run `npm start` to run the site
 
 This will start the HTTP server running on 8080, and it should work with no extra setup required.
@@ -43,15 +43,33 @@ When the `npm start` is first run, the program will go through the [DB setup scr
 * ID (INT)
 * a word (a string up to 45 char, must be unique. for the game to work it cannot contain symbols or numbers. Spaces are allowed)
 * a hint/def (all characters allowed, must not be NULL)
-* category (must be within the four categories of the game ‘random’ ‘movie’ ‘tvshow’ ‘user’, cannot be in more than one category)
+* category (must be within the four categories of the game 'random' 'movie' 'tvshow' 'user', cannot be in more than one category)
 
-When a word is requested through `/word` 
-
+When a word is requested through `/word` a word object is returned that looks like this: `{ word, underscore, def }`
+* `word`
+  * this is the word that is selected and formatted to a usable state; this means that all letters have been turned to lowercase and that spaces are replaced with -
+  * An example would be: `"the-it-crowd"` 
+* `underscore`
+  * this is the word exploded into an array, and its characters have been replaced with underscores. As the game goes on, these underscores are replaced with the guessed letters
+  * spaces remain as dashes
+  * An example would be: `["_", "_", "_", "-", "_", "_", "-", "_", "_", "_", "_", "_"]`
+* `def`
+  * this is the words hint and is just a string
+  * An example would be: `" an IT team" `
 ### DOM layout and functions 
+* nav bar
+  * in [the HTML](./static/index.html#L11), there are two copies of the navbar, one for desktop and one for mobile. There is a CSS media query for the screen size when the page is loaded. If the screen size is below `600px` it will then hide the desktop navbar by changing `--nav-big-display: none;` and `--nav-small-display: flex;`. By default, it is the other way around.
+  * only the small navbar uses JS and its functions are in [domlib.mjs](./static/lib/domlib.mjs#L1). All these do is add an eventlistner to the burger button; when activated, switch classes on the navbar to open and close the menu.
+* settings
+  * text
+* on-screen keyboard
+  * text
+* Game updates
+  * text 
 ### game logic
 ### User-submitted words logic
 ## to-do
-* fix bug where user can not choose a category and the game lets that happen but will break
+* fix bug where user can not choose a category, and the game lets that happen but will break
 * ability to exit the settings menu
 * Change hangman PNG to canvas or SVG
 * accessibility
@@ -60,7 +78,7 @@ When a word is requested through `/word`
 * update responsive styling for setting overlay
 * make the enter button also the replay button
 * Finnish readme
-* change word into a class with its own functoins
+* change word into a class with its own methods
 ## future features
 * multiplayer
 * server-side letter checking
