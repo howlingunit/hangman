@@ -11,7 +11,7 @@ Another key feature of this site is the inclusion of "user-submitted words". Thi
 ## Setup
 1. ensure you have the latest version of Node and NPM installed
 2. in terminal/cmd, go to the folder where the files are installed
-3. run `npm i' to install the dependencies 
+3. run `npm i` to install the dependencies 
 4. run `npm start` to run the site
 
 This will start the HTTP server running on 8080, and it should work with no extra setup required.
@@ -47,7 +47,7 @@ When the `npm start` is first run, the program will go through the [DB setup scr
 
 When a word is requested through `/word` a word object is returned that looks like this: `{ word, underscore, def }`
 * `word`
-  * this is the word that is selected and formatted to a usable state; this means that all letters have been turned to lowercase and that spaces are replaced with -
+  * this is the word selected and formatted to a usable state. The format turns all letters to lowercase, and spaces are replaced with -
   * An example would be: `"the-it-crowd"` 
 * `underscore`
   * this is the word exploded into an array, and its characters have been replaced with underscores. As the game goes on, these underscores are replaced with the guessed letters
@@ -55,30 +55,50 @@ When a word is requested through `/word` a word object is returned that looks li
   * An example would be: `["_", "_", "_", "-", "_", "_", "-", "_", "_", "_", "_", "_"]`
 * `def`
   * this is the words hint and is just a string
-  * An example would be: `" an IT team" `
+  * An example would be: `"an IT team" `
 ### DOM layout and functions 
 * nav bar
   * in [the HTML](./static/index.html#L11), there are two copies of the navbar, one for desktop and one for mobile. There is a CSS media query for the screen size when the page is loaded. If the screen size is below `600px` it will then hide the desktop navbar by changing `--nav-big-display: none;` and `--nav-small-display: flex;`. By default, it is the other way around.
   * only the small navbar uses JS and its functions are in [domlib.mjs](./static/lib/domlib.mjs#L1). All these do is add an eventlistner to the burger button; when activated, switch classes on the navbar to open and close the menu.
-* settings
-  * text
+* settings overlay
+  * The settings overlay is just a div that covers the whole page. When not applied, its display is set to none, but when the settings button is pressed, it runs [this toggle function](./static/lib/domlib.mjs#L18), which changes the display to either flex or none depending on the `toggle` parameter. Centred in that overlay is the settings element, a grid box split into four sections with their respective settings, except for the bottom-right element, the apply button.
 * on-screen keyboard
-  * text
+  * The keyboard is made by the [createKeyboard function](./static/lib/domlib.mjs#L27). This function works by looping through an array, and the array contains the alphabet in the qwerty format and `nl` (newline) where there is to be a new line. It looks like this:
+  * `['nl', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'nl', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'nl', 'z', 'x', 'c', 'v', 'b', 'n', 'm']`
+  * When the item of the array is `nl` it creates a new line div and its styles and then appends it to the keyboard div. When it is just a normal letter, it creates its button adds the styles and content and then appends it to the current line that it is on. 
 * Game updates
-  * text 
+  * multiple functions handle DOM updates during the game; these are:
+    * [updateDOM(lives, livesCounter, underscores, hint, wordDef)](./static/lib/domlib.mjs#L70)
+      * This function updates the game's key components, and each parameter is the value it changes the element to. For example, it uses `lives - livesCounter` to select the appropriate state of the hangman
+      * It should also be noted that `hint` is a boolean. If True and half the lives are used, it will display `wordDef`.
+    * [updateLetter(correct, letter)](./static/lib/domlib.mjs#L58)
+      * This is called whenever a guess is made. It updates the key to either be green or red. 
+    * [deactivateKeyboard()](./static/lib/domlib.mjs#L50)
+      * This is ran at the end of the game. It loops through the keyboard and checks if the letter has been guessed. If not, it disables the button.
+    * [end(completeWord, win)](./static/lib/domlib.mjs#L85)
+      * This function is ran at the end of the game. If `win = Flase` it then displays the correct word and colours it red. If `win = True` it colours it green
+      * This function also reveals the replay button 
 ### game logic
+* when the page loads it [sets up the page](./static/lib/hangman.mjs#L13). It makes the keyboard, adds the eventlisteners and runs the [reset function](./static/lib/hangman.mjs#L46), which cleans up the page and sets all the values then it runs [startGame](./static/lib/hangman.mjs#L63). This function gets the word form the server, and applies the settings and it runs [updateDOM](./static/lib/domlib.mjs#L70) and then its waiting for user input.
+* When a key is pressed it runs [turn(letter)](./static/lib/hangman.mjs#L88) which is the main function in the games loop and it runs in this sequence:
+  * First it checks if the letter has already been guessed, if so it returns
+  * It makes a copy of `word.underscore`, this is for later so we can check if a correct guess has been made as these two will differ
+  * It then loops through `word.word` and checks the inputted letter agains each letter of the word, if theres a match it will replace the underscore of the same location in `word.underscore` and change the colour of that key to green on the keyboard 
 ### User-submitted words logic
+text
 ## to-do
-* fix bug where user can not choose a category, and the game lets that happen but will break
-* ability to exit the settings menu
-* Change hangman PNG to canvas or SVG
+* Finnish readme
 * accessibility
   * wai-aria
   * alt tag
-* update responsive styling for setting overlay
+  * colour blind accessibility
+* bugfix the user submit button (it uses the same styles as the incorrect/correct letters, which change the cursor to `not-allowed`)
+* ability to exit the settings menu
+* fix bug where user can not choose a category, and the game lets that happen but will break
 * make the enter button also the replay button
-* Finnish readme
+* update responsive styling for setting overlay
 * change word into a class with its own methods
+* Change hangman PNG to canvas or SVG
 ## future features
 * multiplayer
 * server-side letter checking
