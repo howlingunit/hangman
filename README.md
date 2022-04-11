@@ -11,7 +11,7 @@ Another key feature of this site is the inclusion of "user-submitted words". Thi
 ## Setup
 1. ensure you have the latest version of Node and NPM installed
 2. in terminal/cmd, go to the folder where the files are installed
-3. run `npm i' to install the dependencies 
+3. run `npm i` to install the dependencies 
 4. run `npm start` to run the site
 
 This will start the HTTP server running on 8080, and it should work with no extra setup required.
