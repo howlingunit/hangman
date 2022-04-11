@@ -11,12 +11,12 @@ Another key feature of this site is the inclusion of "user-submitted words". Thi
 ## Setup
 1. ensure you have the latest version of Node and NPM installed
 2. in terminal/cmd, go to the folder where the files are installed
-3. run `npm i` to install the dependencies 
+3. run `npm i' to install the dependencies 
 4. run `npm start` to run the site
 
 This will start the HTTP server running on 8080, and it should work with no extra setup required.
 
-If it worked, when you connect to the server, you should view this:
+If it worked, when you connect to the server (on a widescreen web browser), you should view this:
 ![an image of the hangman game](./readme_assets/expected-output.png)
 
 It should be noted that this setup works on any *nix or windows enviroment provided it can support the latest version of node and NPM. 
@@ -55,7 +55,7 @@ When a word is requested through `/word` a word object is returned that looks li
   * An example would be: `["_", "_", "_", "-", "_", "_", "-", "_", "_", "_", "_", "_"]`
 * `def`
   * this is the words hint and is just a string
-  * An example would be: `"an IT team" `
+  * An example would be: `"an IT team"`
 ### DOM layout and functions 
 * nav bar
   * in [the HTML](./static/index.html#L11), there are two copies of the navbar, one for desktop and one for mobile. There is a CSS media query for the screen size when the page is loaded. If the screen size is below `600px` it will then hide the desktop navbar by changing `--nav-big-display: none;` and `--nav-small-display: flex;`. By default, it is the other way around.
@@ -80,14 +80,28 @@ When a word is requested through `/word` a word object is returned that looks li
       * This function also reveals the replay button 
 ### game logic
 * when the page loads it [sets up the page](./static/lib/hangman.mjs#L13). It makes the keyboard, adds the eventlisteners and runs the [reset function](./static/lib/hangman.mjs#L46), which cleans up the page and sets all the values then it runs [startGame](./static/lib/hangman.mjs#L63). This function gets the word form the server, and applies the settings and it runs [updateDOM](./static/lib/domlib.mjs#L70) and then its waiting for user input.
-* When a key is pressed it runs [turn(letter)](./static/lib/hangman.mjs#L88) which is the main function in the games loop and it runs in this sequence:
-  * First it checks if the letter has already been guessed, if so it returns
-  * It makes a copy of `word.underscore`, this is for later so we can check if a correct guess has been made as these two will differ
-  * It then loops through `word.word` and checks the inputted letter agains each letter of the word, if theres a match it will replace the underscore of the same location in `word.underscore` and change the colour of that key to green on the keyboard 
+* When a key is pressed, it runs [turn(letter)](./static/lib/hangman.mjs#L88), which is the primary function in the games loop, and it runs in this sequence:
+  * First, it checks if the letter has already been guessed. If so, it returns
+  * It makes a copy of `word.underscore`. This is for later so we can check if a correct guess has been made as these two will differ
+  * It then loops through `word.word` and checks the inputted letter against each letter. If there's a match, it will replace the underscore of the exact location in `word.underscore` with the correct letter and change the colour of that key to green on the keyboard.
+  * Then it checks if there is a difference between `OldUnderscore` and `word.underscore`. If there is a difference, the user guessed a correct letter, and that letter will be in `word.underscore`. No difference means there were no matches between the inputted `letter` and the letters in `word.word`, so it removes a life and colours the letter red. 
+  * It then runs `updateDom()` to update the UI with new information (e.g. change the hangman picture).
+  * The function then checks if the game has ended, it runs two checks. First, it checks if `word.underscore === word.word` if so, that means all the correct letters have been guessed, and the user has won. It also checks that the lives are above zero. If they're below zero, then the user has lost.
+  * When the game finishes, either by winning or losing, `end()` is called.
 ### User-submitted words logic
-text
+* all the client-side functionality happens from [this page](./static/lib/addword.mjs) and it sends a post request to `/addword`
+* When the user presses the submit button on the addword page, the [sendWord() function](./static/lib/addword.mjs#L11) grabs the content from the text fields and puts it into a payload object and then sends it to the server in a POST request.
+* When the server gets the packet, it runs checks on it with the [addWordCheck function](./lib/checks.mjs#L3). These checks are:
+  * If the word is already in the DB.
+  * If the word is below three characters.
+  * If the word is above eighteen characters.
+  * If the word contains anything other than letters or spaces.
+  * If the def is below five-hundred characters.
+  * If the def is above one character.
+* If the payload object is valid `OK` is sent back, and the word is added to the DB. Then the `sendWord` function clears the text fields and turns the submit button green.
+* If the payload object is invalid, then error code 500 is sent back and what the error was. The `sendWord` function displays the error and turns the submit button red.
+
 ## to-do
-* Finnish readme
 * accessibility
   * wai-aria
   * alt tag
@@ -103,5 +117,11 @@ text
 * multiplayer
 * server-side letter checking
 * admin page with the ability to manage words and categories
-
+* Colour themes
+## Done list
+* Finnish readme
+* better settings style
+* URL refactor
+* keyboard style update
+* Burger button
 
