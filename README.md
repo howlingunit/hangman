@@ -1,5 +1,15 @@
 # hangman
-# MultiPlayer branch (WIP)
+# Multiplayer branch (WIP)
+## Multiplayer to-do:
+1. make plan
+2. build game functionality
+  1. server side word checking
+  2. backend API
+  3. front end
+3. leaderboard
+  1. backend API
+  2. front end
+4. styles
 
 ## intro
 This is a hangman web app built with node.js using the express framework and SQLite. It can be easily set up, includes multiple features, and has lots of potential for more to be added.
