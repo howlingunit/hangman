@@ -108,7 +108,6 @@ When a word is requested through `/word` a word object is returned that looks li
   * wai-aria
   * alt tag
   * colour blind accessibility
-* bugfix the user submit button (it uses the same styles as the incorrect/correct letters, which change the cursor to `not-allowed`)
 * ability to exit the settings menu
 * fix bug where user can not choose a category, and the game lets that happen but will break
 * make the enter button also the replay button
@@ -121,6 +120,7 @@ When a word is requested through `/word` a word object is returned that looks li
 * admin page with the ability to manage words and categories
 * Colour themes
 ## Done list
+* bugfix the user submit button (it uses the same styles as the incorrect/correct letters, which change the cursor to `not-allowed`)
 * Finnish readme
 * better settings style
 * URL refactor

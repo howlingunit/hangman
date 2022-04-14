@@ -258,24 +258,18 @@ nav{
 }
 
 .incorrectLetter {
-    /* opacity: 0; */
-    /* background-color: #aa4444; */
     background-color: #662222;
     transition: 0.5s;
 }
 .incorrectLetter:hover{
-    background-color: #662222;
     cursor: not-allowed;
 }
 
 .correctLetter {
-    /* opacity: 0; */
-    /* background-color: #44aa44; */
     background-color: #227722;
     transition: 0.5s;
 }
 .correctLetter:hover{
-    background-color: #227722;
     cursor: not-allowed;
 }
 
@@ -343,6 +337,24 @@ nav{
     height: 3rem;
     width: 10rem;
     font-size: 2rem;
+}
+
+.invalidWord {
+    background-color: #aa4444;
+    transition: 0.5s;
+}
+.invalidWord:hover{
+    background-color: #662222;
+    cursor: pointer;
+}
+
+.validWord {
+    background-color: #44aa44;
+    transition: 0.5s;
+}
+.validWord:hover{
+    background-color: #227722;
+    cursor: pointer;
 }
 
 #responseText {
