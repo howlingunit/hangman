@@ -10,16 +10,16 @@
 <body>
     <nav class="big">
         <h1 id="title">Hangman</h1>
-        <a href="./addword.html"><h3 class="link">add your own words</h3></a></a>
+        <a href="./addword.html"><h3 class="link" role="menuitem">add your own words</h3></a></a>
     </nav>
 
     <nav class="small">
         <div id="nav-top">
-            <img src="./assets/menu.png" alt="a button" class="burgerBtn">
+            <img src="./assets/menu.png" class="burgerBtn" aria-haspopup="true" aria-controls="navLinksDropDown" alt="Burger button for navigation menu">
             <h1 id="title">Hangman</h1>
         </div>
-        <div class="navLinks">
-            <a href="./addword.html"><div class="BtnStyle linkBtn"><h3 class="link">add your own words</h3></div></a>
+        <div id='navLinksDropDown' class="navLinks">
+            <a href="./addword.html"><div class="BtnStyle linkBtn" role="menuitem"><h3 class="link">add your own words</h3></div></a>
         </div>
     </nav>
     
