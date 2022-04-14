@@ -1,4 +1,6 @@
 # hangman
+# MultiPlayer branch (WIP)
+
 ## intro
 This is a hangman web app built with node.js using the express framework and SQLite. It can be easily set up, includes multiple features, and has lots of potential for more to be added.
 
