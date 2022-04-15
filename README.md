@@ -91,7 +91,7 @@ When a word is requested through `/word` a word object is returned that looks li
       * This function is ran at the end of the game. If `win = Flase` it then displays the correct word and colours it red. If `win = True` it colours it green
       * This function also reveals the replay button 
 ### game logic
-* when the page loads it [sets up the page](./static/lib/hangman.mjs#L13). It makes the keyboard, adds the eventlisteners and runs the [reset function](./static/lib/hangman.mjs#L46), which cleans up the page and sets all the values then it runs [startGame](./static/lib/hangman.mjs#L63). This function gets the word form the server, and applies the settings and it runs [updateDOM](./static/lib/domlib.mjs#L70) and then its waiting for user input.
+* when the page loads it [sets up the page](./static/lib/hangman.mjs#L13). It makes the keyboard, adds the eventlisteners and runs the [reset function](./static/lib/hangman.mjs#L46), which cleans up the page and sets all the values then it runs [startGame](./static/lib/hangman.mjs#L63). This function gets the word from the server, and applies the settings and it runs [updateDOM](./static/lib/domlib.mjs#L70) and then its waiting for user input.
 * When a key is pressed, it runs [turn(letter)](./static/lib/hangman.mjs#L88), which is the primary function in the games loop, and it runs in this sequence:
   * First, it checks if the letter has already been guessed. If so, it returns
   * It makes a copy of `word.underscore`. This is for later so we can check if a correct guess has been made as these two will differ
