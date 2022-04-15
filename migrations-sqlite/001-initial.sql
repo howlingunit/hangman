@@ -34,7 +34,7 @@ INSERT INTO words(id, word, def, category) VALUES
     (23, 'mission imposible', 'spys', 'movie'),
     (24, 'groundhog day', 'time loop', 'movie'),
     (25, 'shrek', 'green onion', 'movie'),
-    (26, 'harry potter', 'wizards', 'movie'),
+    (26, 'The Hobbit', 'A story about the small people', 'movie'),
     (27, 'how to train your dragon', 'dragons', 'movie'),
     (28, 'inception', 'dreams', 'movie'),
     (29, 'the matrix', 'simulation', 'movie'),

@@ -63,6 +63,7 @@ function reset() {
 async function startGame() {
   domLib.toggleSettings(false);
   word = await wordLib.fetchWords();
+  console.log(word);
   hint = document.querySelector('#hintTrue').checked;
   setLives();
   domLib.updateDom(lives, livesCounter, word.underscore);
@@ -85,7 +86,7 @@ function setLives() {
   }
 }
 
-function turn(letter) {
+async function turn(letter) {
   if (usedLetters.includes(letter)) { return; }
   if (!word) { return; }
 
@@ -94,21 +95,25 @@ function turn(letter) {
   for (const item of word.underscore) {
     OldUnderscour.push(item);
   }
-  for (let i = 0; i < word.word.length; i++) {
-    if (word.word[i] === letter) {
-      word.underscore[i] = letter;
-      domLib.updateLetter(true, letter);
-    }
-  }
+
+
+  const query = `underscore=${word.underscore.join('')}&wordID=${word.id}&letter=${letter}`;
+  const returnWord = await (await fetch(`turn?${query}`)).json();
+
+  word.underscore = returnWord.userUnderscore;
+
+
   if (OldUnderscour.join('') === word.underscore.join('')) {
     domLib.updateLetter(false, letter);
     livesCounter -= 1;
+  } else {
+    domLib.updateLetter(true, letter);
   }
 
   // end of turn
   domLib.updateDom(lives, livesCounter, word.underscore, hint, word.def);
 
-  win = word.underscore.join('') === word.word;
+  win = returnWord.win;
   if (win) {
     domLib.end(word.word, win);
     word = '';
