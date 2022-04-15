@@ -263,6 +263,7 @@ nav{
 }
 .incorrectLetter:hover{
     cursor: not-allowed;
+    background-color: #662222;
 }
 
 .correctLetter {
@@ -271,6 +272,7 @@ nav{
 }
 .correctLetter:hover{
     cursor: not-allowed;
+    background-color: #227722;
 }
 
 .disabledLetter {
