@@ -137,7 +137,7 @@ nav{
 }
 
 .link{
-    /* text-decoration: underline; */
+    text-decoration: underline;
     color: var(--link-color);
     margin-left: 1em;
     transition: 0.5s;

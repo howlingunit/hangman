@@ -1,16 +1,4 @@
 # hangman
-# Multiplayer branch (WIP)
-## Multiplayer to-do:
-1. make plan
-2. build game functionality
-  1. server side word checking
-  2. backend API
-  3. front end
-3. leaderboard
-  1. backend API
-  2. front end
-4. styles
-
 ## intro
 This is a hangman web app built with node.js using the express framework and SQLite. It can be easily set up, includes multiple features, and has lots of potential for more to be added.
 
@@ -31,43 +19,49 @@ This will start the HTTP server running on 8080, and it should work with no extr
 If it worked, when you connect to the server (on a widescreen web browser), you should view this:
 ![an image of the hangman game](./readme_assets/expected-output.png)
 
-It should be noted that this setup works on any \*nix or windows enviroment provided it can support the latest version of node and NPM. However I have had some errors installing SQLite3 so ensure you also have the proper build environment and the **latest LTS version** of node and NPM.
+It should be noted that this setup works on any \*nix or windows environment, provided it can support the latest version of Node and NPM. However, I have had some errors installing SQLite3 (especially on Windows) so ensure you also have the proper build environment and the **latest LTS version** of Node and NPM.
 ## feature details
 ### web API
 * `/word?categorys=a,b,c`
-  * this is a get request that returns a JSON object which looks like:
+  * This is a GET request that returns a JSON object which looks like:
     * `{ word, underscore, def }`
   * it calls [this function](./lib/wordlib.mjs#L13)
-  * this url requires 1 pramater which is categorys, this is a csv list of possible categorys and can only be form this list:
+  * This URL requires one parameter, which is `categorys`. This is a CSV list of possible categories and can only be from this list:
     * `random`
     * `movie`
     * `tvshow`
     * `user`
 * `/addWord`
-  * this is a POST request for adding a word to the database and if successful will return `OK`
+  * This is a POST request for adding a word to the database and, if successful, will return `OK`
   * it calls [this function](./lib/wordlib.mjs#L31)
   * it expects a JSON object that looks like:
     * `{ word, def }`
-  * this object goes through checks to make sure the word and it's hint are valid, these check happen in [this function](./lib/checks.mjs#L3)
-  * if the check fails an error messege is sent back and the word is not added to the DB
-### Database and word managment
+  * this object goes through checks to ensure the word and its hint are valid. These checks happen in [this function](./lib/checks.mjs#L3)
+  * if the check fails, an error message is sent back, and the word is not added to the DB
+* `/turn?undercores&wordID&letter`
+  * This is a GET request with three needed queries:
+    * `underscore` this is the current state of where the game is at where the underscores is the word with the letters replaced with underscores (except guessed letters).
+    * `wordID` is the string that is the ID for the word that is in use
+    * `letter` this is the guessed letter
+  * This will return an object with the word id and the `userUnderscore` (this is the inputted underscores with the guessed letter in it or not). It looks like `{ wordID, userUnderscores }` 
+### Database and word management
 When the `npm start` is first run, the program will go through the [DB setup script](./migrations-sqlite/001-initial.sql) and database.sqlite will be created; this DB contains the words table with all the 49 pre-made words from the setup script. You can edit and add to this; however, you must have at least one word for each category. Each word needs an:
 * ID (INT)
 * a word (a string up to 45 char, must be unique. for the game to work it cannot contain symbols or numbers. Spaces are allowed)
 * a hint/def (all characters allowed, must not be NULL)
 * category (must be within the four categories of the game 'random' 'movie' 'tvshow' 'user', cannot be in more than one category)
 
-When a word is requested through `/word` a word object is returned that looks like this: `{ word, underscore, def }`
-* `word`
-  * this is the word selected and formatted to a usable state. The format turns all letters to lowercase, and spaces are replaced with -
-  * An example would be: `"the-it-crowd"` 
+When a word is requested through `/word` a word object is returned that looks like this: `{ id, underscore, def }`
+* `id`
+  * this is the id for the word, so when the user calls turn, the server knows which word is in use
+  * An example would be: `13` which corresponds with `"the-it-crowd"` 
 * `underscore`
   * this is the word exploded into an array, and its characters have been replaced with underscores. As the game goes on, these underscores are replaced with the guessed letters
   * spaces remain as dashes
   * An example would be: `["_", "_", "_", "-", "_", "_", "-", "_", "_", "_", "_", "_"]`
 * `def`
   * this is the words hint and is just a string
-  * An example would be: `"an IT team"`
+  * An example would be: `" an IT team" `
 ### DOM layout and functions 
 * nav bar
   * in [the HTML](./static/index.html#L11), there are two copies of the navbar, one for desktop and one for mobile. There is a CSS media query for the screen size when the page is loaded. If the screen size is below `600px` it will then hide the desktop navbar by changing `--nav-big-display: none;` and `--nav-small-display: flex;`. By default, it is the other way around.
@@ -88,14 +82,16 @@ When a word is requested through `/word` a word object is returned that looks li
     * [deactivateKeyboard()](./static/lib/domlib.mjs#L50)
       * This is ran at the end of the game. It loops through the keyboard and checks if the letter has been guessed. If not, it disables the button.
     * [end(completeWord, win)](./static/lib/domlib.mjs#L85)
-      * This function is ran at the end of the game. If `win = Flase` it then displays the correct word and colours it red. If `win = True` it colours it green
+      * This function is ran at the end of the game. If `win = Flase` it then displays the underscores and colours it red. If `win = True` it colours it green
       * This function also reveals the replay button 
 ### game logic
 * when the page loads it [sets up the page](./static/lib/hangman.mjs#L13). It makes the keyboard, adds the eventlisteners and runs the [reset function](./static/lib/hangman.mjs#L46), which cleans up the page and sets all the values then it runs [startGame](./static/lib/hangman.mjs#L63). This function gets the word from the server, and applies the settings and it runs [updateDOM](./static/lib/domlib.mjs#L70) and then its waiting for user input.
 * When a key is pressed, it runs [turn(letter)](./static/lib/hangman.mjs#L88), which is the primary function in the games loop, and it runs in this sequence:
   * First, it checks if the letter has already been guessed. If so, it returns
   * It makes a copy of `word.underscore`. This is for later so we can check if a correct guess has been made as these two will differ
-  * It then loops through `word.word` and checks the inputted letter against each letter. If there's a match, it will replace the underscore of the exact location in `word.underscore` with the correct letter and change the colour of that key to green on the keyboard.
+  * It then sends the id, underscores, and letter to the server through `/turn`
+  * The server then loops through `word.word` and checks the inputted letter against each letter. If there's a match, it will replace the underscore of the exact location in `userUnderscore`. After it loops through, it sends `userUnderscore` back.
+  * On the response the client replaces `word.underscore` with `returnWord.underscore`.
   * Then it checks if there is a difference between `OldUnderscore` and `word.underscore`. If there is a difference, the user guessed a correct letter, and that letter will be in `word.underscore`. No difference means there were no matches between the inputted `letter` and the letters in `word.word`, so it removes a life and colours the letter red. 
   * It then runs `updateDom()` to update the UI with new information (e.g. change the hangman picture).
   * The function then checks if the game has ended, it runs two checks. First, it checks if `word.underscore === word.word` if so, that means all the correct letters have been guessed, and the user has won. It also checks that the lives are above zero. If they're below zero, then the user has lost.
@@ -116,7 +112,6 @@ When a word is requested through `/word` a word object is returned that looks li
 ## to-do
 * accessibility
   * wai-aria
-  * alt tag
   * colour blind accessibility
 * ability to exit the settings menu
 * fix bug where user can not choose a category, and the game lets that happen but will break
@@ -126,11 +121,13 @@ When a word is requested through `/word` a word object is returned that looks li
 * Change hangman PNG to canvas or SVG
 ## future features
 * multiplayer
-* server-side letter checking
 * admin page with the ability to manage words and categories
 * Colour themes
 ## Done list
+* server-side letter checking
 * bugfix the user submit button (it uses the same styles as the incorrect/correct letters, which change the cursor to `not-allowed`)
+* accessibility
+  * alt tags
 * Finnish readme
 * better settings style
 * URL refactor

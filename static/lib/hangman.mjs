@@ -43,6 +43,23 @@ function addEventListeners() {
   startBtn.addEventListener('click', reset);
 }
 
+function setLives() {
+  const elem4 = document.querySelector('#lives4').checked;
+  const elem8 = document.querySelector('#lives8').checked;
+  const elem12 = document.querySelector('#lives12').checked;
+
+  if (elem4 === true) {
+    lives = 4;
+    livesCounter = 4;
+  } else if (elem8 === true) {
+    lives = 8;
+    livesCounter = 8;
+  } else if (elem12 === true) {
+    lives = 12;
+    livesCounter = 12;
+  }
+}
+
 function reset() {
   const endPage = document.querySelector('#end');
   // reset keyboard
@@ -63,27 +80,9 @@ function reset() {
 async function startGame() {
   domLib.toggleSettings(false);
   word = await wordLib.fetchWords();
-  console.log(word);
   hint = document.querySelector('#hintTrue').checked;
   setLives();
   domLib.updateDom(lives, livesCounter, word.underscore);
-}
-
-function setLives() {
-  const elem4 = document.querySelector('#lives4').checked;
-  const elem8 = document.querySelector('#lives8').checked;
-  const elem12 = document.querySelector('#lives12').checked;
-
-  if (elem4 === true) {
-    lives = 4;
-    livesCounter = 4;
-  } else if (elem8 === true) {
-    lives = 8;
-    livesCounter = 8;
-  } else if (elem12 === true) {
-    lives = 12;
-    livesCounter = 12;
-  }
 }
 
 async function turn(letter) {
@@ -115,10 +114,10 @@ async function turn(letter) {
 
   win = returnWord.win;
   if (win) {
-    domLib.end(word.word, win);
+    domLib.end(word.underscore.join(''), win);
     word = '';
   } else if (livesCounter <= 0) {
-    domLib.end(word.word, win);
+    domLib.end(word.underscore.join(''), win);
     word = '';
   }
 }
