@@ -43,6 +43,23 @@ function addEventListeners() {
   startBtn.addEventListener('click', reset);
 }
 
+function setLives() {
+  const elem4 = document.querySelector('#lives4').checked;
+  const elem8 = document.querySelector('#lives8').checked;
+  const elem12 = document.querySelector('#lives12').checked;
+
+  if (elem4 === true) {
+    lives = 4;
+    livesCounter = 4;
+  } else if (elem8 === true) {
+    lives = 8;
+    livesCounter = 8;
+  } else if (elem12 === true) {
+    lives = 12;
+    livesCounter = 12;
+  }
+}
+
 function reset() {
   const endPage = document.querySelector('#end');
   // reset keyboard
@@ -68,24 +85,7 @@ async function startGame() {
   domLib.updateDom(lives, livesCounter, word.underscore);
 }
 
-function setLives() {
-  const elem4 = document.querySelector('#lives4').checked;
-  const elem8 = document.querySelector('#lives8').checked;
-  const elem12 = document.querySelector('#lives12').checked;
-
-  if (elem4 === true) {
-    lives = 4;
-    livesCounter = 4;
-  } else if (elem8 === true) {
-    lives = 8;
-    livesCounter = 8;
-  } else if (elem12 === true) {
-    lives = 12;
-    livesCounter = 12;
-  }
-}
-
-function turn(letter) {
+async function turn(letter) {
   if (usedLetters.includes(letter)) { return; }
   if (!word) { return; }
 
@@ -94,26 +94,30 @@ function turn(letter) {
   for (const item of word.underscore) {
     OldUnderscour.push(item);
   }
-  for (let i = 0; i < word.word.length; i++) {
-    if (word.word[i] === letter) {
-      word.underscore[i] = letter;
-      domLib.updateLetter(true, letter);
-    }
-  }
+
+
+  const query = `underscore=${word.underscore.join('')}&wordID=${word.id}&letter=${letter}`;
+  const returnWord = await (await fetch(`turn?${query}`)).json();
+
+  word.underscore = returnWord.userUnderscore;
+
+
   if (OldUnderscour.join('') === word.underscore.join('')) {
     domLib.updateLetter(false, letter);
     livesCounter -= 1;
+  } else {
+    domLib.updateLetter(true, letter);
   }
 
   // end of turn
   domLib.updateDom(lives, livesCounter, word.underscore, hint, word.def);
 
-  win = word.underscore.join('') === word.word;
+  win = returnWord.win;
   if (win) {
-    domLib.end(word.word, win);
+    domLib.end(word.underscore.join(''), win);
     word = '';
   } else if (livesCounter <= 0) {
-    domLib.end(word.word, win);
+    domLib.end(word.underscore.join(''), win);
     word = '';
   }
 }
