@@ -74,6 +74,7 @@ function reset() {
   win = false;
   usedLetters = [];
   endPage.classList.add('invis');
+
   startGame();
 }
 
@@ -95,12 +96,10 @@ async function turn(letter) {
     OldUnderscour.push(item);
   }
 
-
   const query = `underscore=${word.underscore.join('')}&wordID=${word.id}&letter=${letter}`;
   const returnWord = await (await fetch(`turn?${query}`)).json();
 
   word.underscore = returnWord.userUnderscore;
-
 
   if (OldUnderscour.join('') === word.underscore.join('')) {
     domLib.updateLetter(false, letter);
@@ -114,9 +113,12 @@ async function turn(letter) {
 
   win = returnWord.win;
   if (win) {
+    document.addEventListener('keydown', (e) => { if (e.key === 'Enter') { reset(); } }, { once: true });
+
     domLib.end(word.underscore.join(''), win);
     word = '';
   } else if (livesCounter <= 0) {
+    document.addEventListener('keydown', (e) => { if (e.key === 'Enter') { reset(); } }, { once: true });
     domLib.end(word.underscore.join(''), win);
     word = '';
   }
