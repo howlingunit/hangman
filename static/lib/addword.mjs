@@ -6,6 +6,12 @@ eventListeners();
 function eventListeners() {
   const subButton = document.querySelector('#subNewWord');
   subButton.addEventListener('click', sendWord);
+  document.addEventListener('keydown', (e) => {
+    console.log(e.key);
+    if (e.key === 'Enter') {
+      sendWord();
+    }
+  });
 }
 
 async function sendWord() {
