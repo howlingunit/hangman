@@ -80,6 +80,7 @@ export function updateDom(lives, livesCounter, underscores, hint, wordDef) {
   HangPic.alt = `The hang-man picture with ${livesCounter} lives left`;
   hintP.textContent = '';
   if (hint && livesCounter < lives / 2) {
+    hintP.tabIndex = '0';
     hintP.textContent = `Hint: ${wordDef}`;
   }
 }
