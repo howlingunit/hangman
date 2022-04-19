@@ -24,13 +24,13 @@
     </nav>
     
     <section id="game">
-        <div id="settingLink" class="BtnStyle">
+        <button tabindex="0" id="settingLink" class="BtnStyle">
             Settings
-        </div>
+        </button>
         <img src="assets/8/0.png" id="HangPic">
         <div id="playing" class="infoBox">
             <p id="info2"></p>
-            <p id="wordBox"></p>
+            <p id="wordBox" tabindex="0"></p>
             <p id="hintP"></p>
             <div id="keyboard"></div>
         </div>
@@ -40,7 +40,7 @@
         </div>
         <div id="overlay">
             <div id="settings" class="settingClass">
-                <div id="words" class="settingbox">
+                <div id="words" class="settingbox" role="group">
                     <h2>Word list</h2>
                     <div class="checkbox">
                         <input type="checkbox" name="random" id="randomWords" checked>
@@ -59,7 +59,7 @@
                         <label for="userSubmited">User Submited</label>
                     </div>
                 </div>
-                <div id="lives" class="settingbox">
+                <div id="lives" class="settingbox" role="radiogroup">
                     <h2>Lives</h2>
                     <div class="checkbox">
                         <input type="radio" name="lives" id="lives4" value="4">
@@ -74,7 +74,7 @@
                         <label for="lives12">12 Lives</label>
                     </div>
                 </div>
-                <div id="hints" class="settingbox">
+                <div id="hints" class="settingbox" role="radiogroup">
                     <h2>Word Hint</h2>
                     <div class="checkbox">
                         <input type="radio" name="hint" id="hintTrue" value="1">
@@ -85,7 +85,7 @@
                         <label for="hintFalse">No</label>
                     </div>
                 </div>
-                <div id="startBtn" class="BtnStyle settingbox">Apply</div>
+                <button id="startBtn" class="BtnStyle settingbox">Apply</button>
             </div>
         </div>
     </section>

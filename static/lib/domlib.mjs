@@ -34,7 +34,7 @@ export function createKeyboard() {
       currentLine.classList.add('lineStyle');
       keyboardDiv.appendChild(currentLine);
     } else {
-      const letterBox = document.createElement('div');
+      const letterBox = document.createElement('button');
       const letter = document.createElement('p');
       letter.classList.add('letterStyle');
       letter.textContent = keys[i];
@@ -42,6 +42,7 @@ export function createKeyboard() {
       letterBox.classList.add('letterBoxStyle');
       letterBox.classList.add('BtnStyle');
       letterBox.id = keys[i];
+      letterBox.tabIndex = '0';
       currentLine.appendChild(letterBox);
     }
   }
@@ -79,6 +80,7 @@ export function updateDom(lives, livesCounter, underscores, hint, wordDef) {
   HangPic.alt = `The hang-man picture with ${livesCounter} lives left`;
   hintP.textContent = '';
   if (hint && livesCounter < lives / 2) {
+    hintP.tabIndex = '0';
     hintP.textContent = `Hint: ${wordDef}`;
   }
 }
