@@ -19,7 +19,7 @@ This will start the HTTP server running on 8080, and it should work with no extr
 If it worked, when you connect to the server (on a widescreen web browser), you should view this:
 ![an image of the hangman game](./readme_assets/expected-output.png)
 
-It should be noted that this setup works on any \*nix or windows environment, provided it can support the latest version of Node and NPM. However, I have had some errors installing SQLite3 (especially on Windows) so ensure you also have the proper build environment and the **latest LTS version** of Node and NPM.
+It should be noted that this setup works on any \*nix or windows environment, provided it can support the latest version of Node and NPM. However, I have had some errors installing SQLite3 (especially on Windows) so ensure you also have the proper build environment and the **latest LTS version** of Node and NPM. On linux you may need to install `build-essential` and the latest version of python. On windows you may need to use npm to install `Windows-Build-Tools` example command:`npm install --global windows-build-tools` (note: this command will install visual studio and other packages)
 ## feature details
 ### web API
 * `/word?categorys=a,b,c`
