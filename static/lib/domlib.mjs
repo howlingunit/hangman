@@ -34,7 +34,7 @@ export function createKeyboard() {
       currentLine.classList.add('lineStyle');
       keyboardDiv.appendChild(currentLine);
     } else {
-      const letterBox = document.createElement('div');
+      const letterBox = document.createElement('button');
       const letter = document.createElement('p');
       letter.classList.add('letterStyle');
       letter.textContent = keys[i];
@@ -42,6 +42,7 @@ export function createKeyboard() {
       letterBox.classList.add('letterBoxStyle');
       letterBox.classList.add('BtnStyle');
       letterBox.id = keys[i];
+      letterBox.tabIndex = '0';
       currentLine.appendChild(letterBox);
     }
   }
