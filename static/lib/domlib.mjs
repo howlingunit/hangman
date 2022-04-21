@@ -97,3 +97,8 @@ export function end(completeWord, win) {
     wordBox.classList.add('correctWord');
   }
 }
+
+export function noCategory() {
+  const applyButton = document.querySelector('#startBtn');
+  applyButton.classList.add('invalidWord');
+}
