@@ -17,10 +17,10 @@ export async function fetchWords() {
 
   const response = await fetch(`word/?${urlPrams}`);
 
-  if (response.ok) {
+  if (response.status === 200) {
     return await response.json();
   } else {
-    console.error(`svr error Code:${response.code}`);
+    console.error(`svr error Code:${response.status}`);
     return 'error';
   }
 }

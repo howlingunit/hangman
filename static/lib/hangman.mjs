@@ -79,10 +79,11 @@ function reset() {
 }
 
 async function startGame() {
-  domLib.toggleSettings(false);
   word = await wordLib.fetchWords();
+  if (word === 'error') { domLib.noCategory(); return; }
   hint = document.querySelector('#hintTrue').checked;
   setLives();
+  domLib.toggleSettings(false);
   domLib.updateDom(lives, livesCounter, word.underscore);
 }
 

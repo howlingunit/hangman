@@ -17,6 +17,12 @@ export function navBar() {
 
 export function toggleSettings(toggle) {
   const overlay = document.querySelector('#overlay');
+  const applyButton = document.querySelector('#startBtn');
+  const categoryErrorText = document.querySelector('#categoryErrorText');
+
+  applyButton.classList.remove('invalidWord');
+  categoryErrorText.classList.add('invis');
+
   if (toggle) {
     overlay.style.display = 'flex';
   } else {
@@ -96,4 +102,12 @@ export function end(completeWord, win) {
   } else {
     wordBox.classList.add('correctWord');
   }
+}
+
+export function noCategory() {
+  const applyButton = document.querySelector('#startBtn');
+  const categoryErrorText = document.querySelector('#categoryErrorText');
+  applyButton.classList.add('invalidWord');
+
+  categoryErrorText.classList.remove('invis');
 }
