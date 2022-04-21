@@ -111,11 +111,9 @@ When a word is requested through `/word` a word object is returned that looks li
 
 ## to-do
 * accessibility
-  * wai-aria
   * colour blind accessibility
 * ability to exit the settings menu
 * fix bug where user can not choose a category, and the game lets that happen but will break
-* make the enter button also the replay button
 * update responsive styling for setting overlay
 * change word into a class with its own methods
 * Change hangman PNG to canvas or SVG
@@ -124,9 +122,11 @@ When a word is requested through `/word` a word object is returned that looks li
 * admin page with the ability to manage words and categories
 * Colour themes
 ## Done list
+* make the enter button also the replay button
 * server-side letter checking
 * bugfix the user submit button (it uses the same styles as the incorrect/correct letters, which change the cursor to `not-allowed`)
 * accessibility
+  * wai-aria
   * alt tags
 * Finnish readme
 * better settings style
