@@ -108,6 +108,7 @@ When a word is requested through `/word` a word object is returned that looks li
   * If the word contains anything other than letters or spaces.
   * If the def is below five-hundred characters.
   * If the def is above one character.
+  * If the word or def contains any bad words, defined in the [profanities.json file](./lib/profanities.json)
 * If the payload object is valid `OK` is sent back, and the word is added to the DB. Then the `sendWord` function clears the text fields and turns the submit button green.
 * If the payload object is invalid, then error code 500 is sent back and what the error was. The `sendWord` function displays the error and turns the submit button red.
 
