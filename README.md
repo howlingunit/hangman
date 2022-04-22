@@ -19,7 +19,7 @@ This will start the HTTP server running on 8080, and it should work with no extr
 If it worked, when you connect to the server (on a widescreen web browser), you should view this:
 ![an image of the hangman game](./readme_assets/expected-output.png)
 
-It should be noted that this setup works on any \*nix or windows environment, provided it can support the latest version of Node and NPM. However, I have had some errors installing SQLite3 (especially on Windows) so ensure you also have the proper build environment and the **latest LTS version** of Node and NPM. On linux you may need to install `build-essential` and the latest version of python. On windows you may need to use npm to install `Windows-Build-Tools` example command:`npm install --global windows-build-tools` (note: this command will install visual studio and other packages)
+It should be noted that this setup works on any \*nix or windows environment, provided it can support the latest version of Node and NPM. 
 ## feature details
 ### web API
 * `/word?categorys=a,b,c`
@@ -84,6 +84,8 @@ When a word is requested through `/word` a word object is returned that looks li
     * [end(completeWord, win)](./static/lib/domlib.mjs#L85)
       * This function is ran at the end of the game. If `win = Flase` it then displays the underscores and colours it red. If `win = True` it colours it green
       * This function also reveals the replay button 
+    * [noCategory()](./static/lib/domlib.mjs#L107)
+      * This function displayes an error if no categorys are selected.
 ### game logic
 * when the page loads it [sets up the page](./static/lib/hangman.mjs#L13). It makes the keyboard, adds the eventlisteners and runs the [reset function](./static/lib/hangman.mjs#L46), which cleans up the page and sets all the values then it runs [startGame](./static/lib/hangman.mjs#L63). This function gets the word from the server, and applies the settings and it runs [updateDOM](./static/lib/domlib.mjs#L70) and then its waiting for user input.
 * When a key is pressed, it runs [turn(letter)](./static/lib/hangman.mjs#L88), which is the primary function in the games loop, and it runs in this sequence:
@@ -113,7 +115,6 @@ When a word is requested through `/word` a word object is returned that looks li
 * accessibility
   * colour blind accessibility
 * ability to exit the settings menu
-* fix bug where user can not choose a category, and the game lets that happen but will break
 * update responsive styling for setting overlay
 * change word into a class with its own methods
 * Change hangman PNG to canvas or SVG
@@ -122,6 +123,8 @@ When a word is requested through `/word` a word object is returned that looks li
 * admin page with the ability to manage words and categories
 * Colour themes
 ## Done list
+* added profanity filter
+* fix bug where user can not choose a category, and the game lets that happen but will break
 * make the enter button also the replay button
 * server-side letter checking
 * bugfix the user submit button (it uses the same styles as the incorrect/correct letters, which change the cursor to `not-allowed`)
