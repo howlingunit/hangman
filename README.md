@@ -8,6 +8,8 @@ Most importantly, it allows a user to play the standard game but also allows for
 * if a hint is to be displayed after half the user's lives are used.
 
 Another key feature of this site is the inclusion of "user-submitted words". This allows users to submit their own words and their hints to the database (before these words are added, it goes through a checking function that ensures it's a valid word). Players can then choose these words as a category in the settings menu.
+
+This app is hosted at [hangman.tyway.net](http://hangman.tyway.net)
 ## Setup
 1. ensure you have the latest version of Node and NPM installed
 2. in terminal/cmd, go to the folder where the files are installed
@@ -114,11 +116,13 @@ When a word is requested through `/word` a word object is returned that looks li
 
 ## to-do
 * accessibility
-  * colour blind accessibility
+  * colour blind accessibility (maybe with colour themes)
 * ability to exit the settings menu
 * update responsive styling for setting overlay
 * change word into a class with its own methods
 * Change hangman PNG to canvas or SVG
+* bug fix profanity filter
+* allow the user to see which word the got wrong
 ## future features
 * multiplayer
 * admin page with the ability to manage words and categories
@@ -137,4 +141,3 @@ When a word is requested through `/word` a word object is returned that looks li
 * URL refactor
 * keyboard style update
 * Burger button
-
