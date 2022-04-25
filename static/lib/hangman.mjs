@@ -121,7 +121,6 @@ async function turn(letter) {
   } else if (livesCounter <= 0) {
     let correctWord = await fetch(`answer?id=${word.id}`);
     correctWord = await correctWord.json();
-    console.log(correctWord);
     document.addEventListener('keydown', (e) => { if (e.key === 'Enter') { reset(); } }, { once: true });
     domLib.end(correctWord, win);
     word = '';
