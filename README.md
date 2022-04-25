@@ -27,7 +27,7 @@ It should be noted that this setup works on any \*nix or windows environment, pr
 * `/word?categorys=a,b,c`
   * This is a GET request that returns a JSON object which looks like:
     * `{ word, underscore, def }`
-  * it calls [this function](./lib/wordlib.mjs#L13)
+  * it calls [this function](./lib/wordlib.mjs#L14)
   * This URL requires one parameter, which is `categorys`. This is a CSV list of possible categories and can only be from this list:
     * `random`
     * `movie`
@@ -35,10 +35,10 @@ It should be noted that this setup works on any \*nix or windows environment, pr
     * `user`
 * `/addWord`
   * This is a POST request for adding a word to the database and, if successful, will return `OK`
-  * it calls [this function](./lib/wordlib.mjs#L31)
+  * it calls [this function](./lib/wordlib.mjs#L81)
   * it expects a JSON object that looks like:
     * `{ word, def }`
-  * this object goes through checks to ensure the word and its hint are valid. These checks happen in [this function](./lib/checks.mjs#L3)
+  * this object goes through checks to ensure the word and its hint are valid. These checks happen in [this function](./lib/checks.mjs#L4)
   * if the check fails, an error message is sent back, and the word is not added to the DB
 * `/turn?undercores&wordID&letter`
   * This is a GET request with three needed queries:
@@ -46,6 +46,10 @@ It should be noted that this setup works on any \*nix or windows environment, pr
     * `wordID` is the string that is the ID for the word that is in use
     * `letter` this is the guessed letter
   * This will return an object with the word id and the `userUnderscore` (this is the inputted underscores with the guessed letter in it or not). It looks like `{ wordID, userUnderscores }` 
+* `/answer?id`
+  * This is a GET request with one query:
+    * `id` this is the id of the word.
+  * this will respond with a string. This string is the complete word.
 ### Database and word management
 When the `npm start` is first run, the program will go through the [DB setup script](./migrations-sqlite/001-initial.sql) and database.sqlite will be created; this DB contains the words table with all the 49 pre-made words from the setup script. You can edit and add to this; however, you must have at least one word for each category. Each word needs an:
 * ID (INT)
@@ -71,26 +75,26 @@ When a word is requested through `/word` a word object is returned that looks li
 * settings overlay
   * The settings overlay is just a div that covers the whole page. When not applied, its display is set to none, but when the settings button is pressed, it runs [this toggle function](./static/lib/domlib.mjs#L18), which changes the display to either flex or none depending on the `toggle` parameter. Centred in that overlay is the settings element, a grid box split into four sections with their respective settings, except for the bottom-right element, the apply button.
 * on-screen keyboard
-  * The keyboard is made by the [createKeyboard function](./static/lib/domlib.mjs#L27). This function works by looping through an array, and the array contains the alphabet in the qwerty format and `nl` (newline) where there is to be a new line. It looks like this:
+  * The keyboard is made by the [createKeyboard function](./static/lib/domlib.mjs#L33). This function works by looping through an array, and the array contains the alphabet in the qwerty format and `nl` (newline) where there is to be a new line. It looks like this:
   * `['nl', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'nl', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'nl', 'z', 'x', 'c', 'v', 'b', 'n', 'm']`
   * When the item of the array is `nl` it creates a new line div and its styles and then appends it to the keyboard div. When it is just a normal letter, it creates its button adds the styles and content and then appends it to the current line that it is on. 
 * Game updates
   * multiple functions handle DOM updates during the game; these are:
-    * [updateDOM(lives, livesCounter, underscores, hint, wordDef)](./static/lib/domlib.mjs#L70)
+    * [updateDOM(lives, livesCounter, underscores, hint, wordDef)](./static/lib/domlib.mjs#L77)
       * This function updates the game's key components, and each parameter is the value it changes the element to. For example, it uses `lives - livesCounter` to select the appropriate state of the hangman
       * It should also be noted that `hint` is a boolean. If True and half the lives are used, it will display `wordDef`.
-    * [updateLetter(correct, letter)](./static/lib/domlib.mjs#L58)
+    * [updateLetter(correct, letter)](./static/lib/domlib.mjs#L65)
       * This is called whenever a guess is made. It updates the key to either be green or red. 
-    * [deactivateKeyboard()](./static/lib/domlib.mjs#L50)
+    * [deactivateKeyboard()](./static/lib/domlib.mjs#L57)
       * This is ran at the end of the game. It loops through the keyboard and checks if the letter has been guessed. If not, it disables the button.
-    * [end(completeWord, win)](./static/lib/domlib.mjs#L85)
+    * [end(completeWord, win)](./static/lib/domlib.mjs#L94)
       * This function is ran at the end of the game. If `win = Flase` it then displays the underscores and colours it red. If `win = True` it colours it green
       * This function also reveals the replay button 
     * [noCategory()](./static/lib/domlib.mjs#L107)
       * This function displayes an error if no categorys are selected.
 ### game logic
-* when the page loads it [sets up the page](./static/lib/hangman.mjs#L13). It makes the keyboard, adds the eventlisteners and runs the [reset function](./static/lib/hangman.mjs#L46), which cleans up the page and sets all the values then it runs [startGame](./static/lib/hangman.mjs#L63). This function gets the word from the server, and applies the settings and it runs [updateDOM](./static/lib/domlib.mjs#L70) and then its waiting for user input.
-* When a key is pressed, it runs [turn(letter)](./static/lib/hangman.mjs#L88), which is the primary function in the games loop, and it runs in this sequence:
+* when the page loads it [sets up the page](./static/lib/hangman.mjs#L13). It makes the keyboard, adds the eventlisteners and runs the [reset function](./static/lib/hangman.mjs#L63), which cleans up the page and sets all the values then it runs [startGame](./static/lib/hangman.mjs#L81). This function gets the word from the server, and applies the settings and it runs [updateDOM](./static/lib/domlib.mjs#L77) and then its waiting for user input.
+* When a key is pressed, it runs [turn(letter)](./static/lib/hangman.mjs#L90), which is the primary function in the games loop, and it runs in this sequence:
   * First, it checks if the letter has already been guessed. If so, it returns
   * It makes a copy of `word.underscore`. This is for later so we can check if a correct guess has been made as these two will differ
   * It then sends the id, underscores, and letter to the server through `/turn`
@@ -102,8 +106,8 @@ When a word is requested through `/word` a word object is returned that looks li
   * When the game finishes, either by winning or losing, `end()` is called.
 ### User-submitted words logic
 * all the client-side functionality happens from [this page](./static/lib/addword.mjs) and it sends a post request to `/addword`
-* When the user presses the submit button on the addword page, the [sendWord() function](./static/lib/addword.mjs#L11) grabs the content from the text fields and puts it into a payload object and then sends it to the server in a POST request.
-* When the server gets the packet, it runs checks on it with the [addWordCheck function](./lib/checks.mjs#L3). These checks are:
+* When the user presses the submit button on the addword page, the [sendWord() function](./static/lib/addword.mjs#L17) grabs the content from the text fields and puts it into a payload object and then sends it to the server in a POST request.
+* When the server gets the packet, it runs checks on it with the [addWordCheck function](./lib/checks.mjs#L4). These checks are:
   * If the word is already in the DB.
   * If the word is below three characters.
   * If the word is above eighteen characters.
@@ -121,12 +125,12 @@ When a word is requested through `/word` a word object is returned that looks li
 * update responsive styling for setting overlay
 * change word into a class with its own methods
 * Change hangman PNG to canvas or SVG
-* allow the user to see which word the got wrong
 ## future features
 * multiplayer
 * admin page with the ability to manage words and categories
 * Colour themes
 ## Done list
+* allow the user to see which word the got wrong
 * bug fix profanity filter
 * added profanity filter
 * fix bug where user can not choose a category, and the game lets that happen but will break

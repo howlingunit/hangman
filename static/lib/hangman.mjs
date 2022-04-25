@@ -123,7 +123,7 @@ async function turn(letter) {
     correctWord = await correctWord.json();
     console.log(correctWord);
     document.addEventListener('keydown', (e) => { if (e.key === 'Enter') { reset(); } }, { once: true });
-    domLib.end(correctWord.word, win);
+    domLib.end(correctWord, win);
     word = '';
   }
 }
