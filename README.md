@@ -121,13 +121,13 @@ When a word is requested through `/word` a word object is returned that looks li
 * update responsive styling for setting overlay
 * change word into a class with its own methods
 * Change hangman PNG to canvas or SVG
-* bug fix profanity filter
 * allow the user to see which word the got wrong
 ## future features
 * multiplayer
 * admin page with the ability to manage words and categories
 * Colour themes
 ## Done list
+* bug fix profanity filter
 * added profanity filter
 * fix bug where user can not choose a category, and the game lets that happen but will break
 * make the enter button also the replay button
