@@ -1,0 +1,92 @@
+:root {
+  --location-height: auto;
+  --location-padding: 7rem 0 7rem 0;
+  --location-flex-direction: row;
+  --location-gap: 5rem;
+  --loc-pic-width: 60%;
+  --loc-pic-height: 30rem;
+  --loc-pic-border-radius: 3rem 0 0 3rem;
+  --loc-pic-top: 0;
+  --loc-text-padding: 0 0 0 5rem;
+  --loc-text-h1-font-size: 4rem;
+  --loc-text-p-font-size: 2rem;
+  --loc-text-align-items: flex-start;
+  --loc-text-text-align: start;
+}
+@media (max-width: 1200px) {
+  :root {
+    --location-height: auto;
+    --loc-pic-height: 40rem;
+
+  }
+}
+@media (max-width: 800px) {
+  :root {
+    --location-padding: 5rem 0 5rem;
+    --location-gap: 0rem;
+    --location-flex-direction: column;
+    --loc-pic-width: 100%;
+    --loc-pic-height: 20rem;
+    --loc-pic-border-radius: 3rem 3rem 3rem 3rem; 
+    --loc-pic-top: 3rem;
+    --loc-text-padding: 0 0.5rem 0 0.5rem;
+    --loc-text-h1-font-size: 3rem;
+    --loc-text-p-font-size: 1.5rem;
+    --loc-text-align-items: center;
+    --loc-text-text-align: center;
+
+  }
+}
+
+.locations {
+  background-color: #030712;
+  height: auto;
+  flex-direction: column;
+}
+
+.location {
+  display: flex;
+  height: var(--location-height);
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: var(--location-flex-direction);
+  gap: var(--location-gap);
+  padding: var(--location-padding);
+}
+
+.loc-pic {
+  height: var(--loc-pic-height);
+  width: var(--loc-pic-width);
+  border-radius: var(--loc-pic-border-radius);
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex-grow: 4;
+  background-color: #0085a3;
+  top: var(--loc-pic-top);
+}
+
+.loc-text {
+  padding: var(--loc-text-padding);
+  flex-shrink: 2;
+
+  display: flex;
+  justify-content: center;
+  align-items: var(--loc-text-align-items);
+  flex-direction: column;
+
+  text-align: var(--loc-text-text-align);
+
+}
+.loc-text>h2 {
+  font-size: var(--loc-text-h1-font-size);
+  margin-bottom: 0.5rem;
+}
+.loc-text>h3 {
+  text-decoration: underline;
+  margin-bottom: 2rem;
+}
+.loc-text>p {
+  font-size: var(--loc-text-p-font-size);
+  margin-bottom: 1rem;
+}

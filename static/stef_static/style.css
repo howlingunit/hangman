@@ -1,0 +1,238 @@
+/* fonts: */
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
+
+/* blank slate */
+*{
+  box-sizing: border-box;
+  font-size: 100%;
+  font-weight: normal;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  text-decoration: none;
+}
+
+body{
+  background-color: #1e2a39;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+::-webkit-scrollbar {
+  display: none; 
+}
+
+:root {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+
+  --nav-title-font-size: 5rem;
+  --nav-title-margin: 0 0 0 0;
+  --nav-align-items: baseline;
+  --nav-items-font-size: 2.5rem;
+  --nav-flex-direction: row;
+  --nav-width: 75%;
+  --nav-text-align: start;
+  --nav-padding: 2.5rem 0 0 0;
+
+  --article-flex-direction: row;
+
+
+  --CTAbutt-width: 20rem;
+  --CTAbutt-height: 5rem;
+
+
+  --banner-h2-font-size: 6rem;
+  --banner-h2-margin-bottom: 0;
+
+  --credit-position: absolute;
+  --credit-bottom: 1rem;
+  --credit-right: 2rem;
+}
+
+@media (max-width: 1200px) {
+  :root {
+  }
+}
+
+@media (max-width: 800px) {
+  :root {
+
+    --nav-title-font-size: 4rem;
+    --nav-title-margin: 1rem 0 0 0;
+    --nav-align-items: right;
+    --nav-items-font-size: 1.5rem;
+    --nav-flex-direction: column-reverse;
+    --nav-width: 100%;
+    --nav-text-align: center;
+    --nav-padding: 1rem 0 0 0;
+
+    --article-flex-direction: column;
+
+
+    --CTAbutt-width: 18rem;
+    --CTAbutt-height: 4.5rem;  
+
+
+    --banner-h2-font-size: 4rem;
+    --banner-h2-margin-bottom: 2rem;
+
+    --credit-position: relative;
+    --credit-bottom: 0;
+    --credit-right: 0;
+
+  }
+}
+
+h1 {
+  font-family: 'Sacramento', cursive;
+  font-style: normal;
+  font-weight: 400;
+}
+
+h2 {
+  font-family: 'Comfortaa', cursive;
+}
+
+article {
+  height: 95vh;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: var(--article-flex-direction);
+  align-items: center;
+  justify-content: var(--dimmer-justify-content);
+}
+
+nav {
+  width: var(--nav-width);
+  padding: var(--nav-padding);
+
+  display: flex;
+  flex-direction: var(--nav-flex-direction);
+  justify-content: space-between;
+  align-items: var(--nav-align-items);
+  text-align: var(--nav-text-align);
+}
+
+nav>h1 {
+  font-size: var(--nav-title-font-size);
+  margin: var(--nav-title-margin);
+}
+
+.nav-items {
+  list-style: none;
+  font-size: var(--nav-items-font-size);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 2rem;
+}
+
+.CTAbutt {
+  cursor: pointer;
+  width: var(--CTAbutt-width);
+  height: var(--CTAbutt-height);
+
+  background-color: #6297BF;
+  border: 0;
+  border-radius: 1.5rem;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  gap: 2rem;
+  transition: 0.5s;
+}
+.CTAbutt>svg{
+  width: 2rem;
+  height: 2rem;
+
+  top: 0.2rem;
+
+  transition: 0.5s;
+
+  /* margin-left: 2rem; */
+
+}
+.CTAbutt>p{
+  font-size: 2rem;
+}
+.CTAbutt:hover {
+  background-color: #00c8f5;
+}
+.CTAbutt:active {
+  background-color: #0085a3;
+}
+.CTAbutt:hover > svg{
+  transform: translate(1rem);
+}
+
+.banner {
+  height: auto;
+  padding: 4rem 0rem 4rem 0;
+
+  justify-content: space-around;
+  text-align: center;
+
+}
+.banner>h2 {
+  font-size: var(--banner-h2-font-size);
+  line-height: 100%;
+  margin-bottom: var(--banner-h2-margin-bottom);
+}
+
+footer {
+  background-color: #616161;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 1rem;
+  width: 100vw;
+
+  padding: 2rem 0.5rem 1rem 0.5rem;
+  font-size: 1.4rem;
+  text-align: center;
+
+}
+
+.site-map {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.site-map>li>a {
+  text-decoration: underline;
+}
+
+.footer-contact>a {
+  text-decoration: underline;
+}
+
+.socials {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20%;
+}
+
+.credit {
+  position: var(--credit-position);
+
+  bottom: var(--credit-bottom);
+  right: var(--credit-right);
+}
+.credit>a {
+  text-decoration: underline;
+}
