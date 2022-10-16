@@ -95,7 +95,7 @@ p{
     transition: 0.2s;
 }
 .smallOpen{
-    height: 7rem;
+    height: 10rem;
 }
 
 nav{
@@ -335,7 +335,7 @@ nav{
     text-decoration: none;
     font-size: 3rem;
     letter-spacing: 0.5rem;
-    margin-bottom: 2rem;
+    margin: 2rem 0 2rem 0;
 }
 
 #subNewWord {
